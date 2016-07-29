@@ -30,8 +30,8 @@ CAIRO_CFLAGS  ?= $(shell pkg-config --cflags cairo)
 CAIRO_LIBS    ?= $(shell pkg-config --libs cairo)
 LUA_CFLAGS    ?= $(shell pkg-config --cflags $(LUA_PACKAGE))
 LUA_LIBS      ?= $(shell pkg-config --libs $(LUA_PACKAGE))
-QT_CFLAGS     ?= $(shell pkg-config --cflags Qt5Gui Qt5Widgets Qt5Core)
-QT_LIBS	      ?= $(shell pkg-config --libs Qt5Gui Qt5Widgets Qt5Core)
+QT_CFLAGS     ?= $(shell pkg-config --cflags QtGui QtCore)
+QT_LIBS	      ?= $(shell pkg-config --libs QtGui QtCore)
 #
 # Library needed to use dlopen/dlsym/dlclose calls
 #
