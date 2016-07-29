@@ -73,10 +73,11 @@ IPEVERS = 7.2.5
 #IPEPREFIX  := /usr/local
 #IPEPREFIX  := /usr
 #IPEPREFIX  := /opt/ipe7
+IPEPREFIX  := $(DESTDIR)
 #
-ifeq "$(IPEPREFIX)" ""
-$(error You need to specify IPEPREFIX!)
-endif
+#ifeq "$(IPEPREFIX)" ""
+#$(error You need to specify IPEPREFIX!)
+#endif
 #
 # Where Ipe executables will be installed ('ipe', 'ipetoipe' etc)
 IPEBINDIR  = $(IPEPREFIX)/bin
