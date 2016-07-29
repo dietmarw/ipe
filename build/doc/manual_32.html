@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<!-- XML file produced from file: manual.tex
+     using Hyperlatex v 15.02 (c) Otfried Cheong
+     on Emacs 24.3.1, Tue Jul 19 19:54:59 2016 -->
+<head>
+<title>Ipe Manual -- 7.4 Gradient patterns</title>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width,
+    initial-scale=1" /><link rel="stylesheet" href="manual.css" />
+<style type="text/css">
+.tex-maketitle { text-align: center; }
+div.tex-abstract { margin-left: 20%; margin-right: 10%; }
+h3.tex-abstract  { text-align: center; }
+div.tex-verse, div.tex-quote, div.tex-quotation, div.tex-math {
+  margin-left : 10%; 
+  margin-right : 10%;
+}
+.tex-normalsize { font-size: medium; }
+.tex-large { font-size: large; }
+.tex-Large { font-size: x-large; }
+.tex-LARGE { font-size: xx-large; }
+.tex-huge { font-size: xx-large; }
+.tex-Huge { font-size: xx-large; }
+.tex-small { font-size: small; }
+.tex-footnotesize { font-size: x-small; }
+.tex-scriptsize { font-size: x-small; }
+.tex-tiny { font-size: xx-small; }
+.tex-emph { font-style: italic; }
+.tex-strong { font-weight: bold; }
+.tex-bf { font-weight: bold; }
+.tex-it { font-style: italic; }
+.tex-tt { font-family: monospace; }
+.tex-underline { text-decoration: underline; }
+.tex-sf { font: sans-serif; }
+.tex-sc { font-variant: small-caps; }
+.tex-center { text-align: center; }
+.tex-mbox { white-space: nowrap; }
+.tex-verbatim, .tex-example {
+  border-radius: 16px;
+  box-shadow: #387BBE 0px 0px 12px 0px;
+  padding: 1em 1em;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+dl.tex-description {
+  padding-left: 2em;
+  padding-right: 2em;
+}
+dl.tex-description dt {
+  float: left;
+  clear: left;
+  color: green;
+  width: 200px;
+}
+dl.tex-description dd {
+  margin-left: 200px;
+  margin-right: 100px;
+}
+</style>
+
+</head>
+<body bgcolor="#ffffe6">
+<div data-role="page">
+<table width="100%" cellpadding=0 cellspacing=2><tr>
+    <td bgcolor="#99ccff"><a href="manual_33.html"><img border="0" alt="7.5 Ipe symbols used from text objects" src="next.png"></a></td><td bgcolor="#99ccff"><a href="manual_28.html"><img border="0" alt="7 Presentations" src="up.png"></a></td><td bgcolor="#99ccff"><a href="manual_31.html"><img border="0" alt="7.3 Bookmarks" src="previous.png"></a></td><td align="center" bgcolor="#99ccff" width="100%"><span class="tex-bf">7.4 Gradient patterns</span></td></tr></table>
+<div data-role="content">
+<h2>7.4 Gradient patterns</h2>
+
+<p>Gradient patterns allow to shade objects with continuously changing
+colors.  This is often used for backgrounds, or to achieve the
+illusion of three-dimensional spheres or cylinders.  
+<p>The intended use of gradients is to allow the creation of attractive
+symbols inside the style sheet, for backgrounds, as bullets in item
+lists (see next section), or simply to define attractive glassy-ball
+symbols and the like that can be used through the <span class="tex-emph">Use symbol</span>
+ipelet.
+<p>The Ipe user interface does not offer any way of creating or editing
+gradients.  If your stylesheet defines a gradient, then it is possible
+to fill a path object with this gradient, but getting the gradient
+coordinate system right is not trivial.  (The trick is to draw the
+path object at gradient coordinates, and translate/rotate it to the
+final location afterwards.)
+<p>The definition of a linear (axial) gradient looks like this:
+<pre class="tex-verbatim">
+  &lt;gradient name="linear" type="axial" extend="yes" coords="75 0 325 0"&gt;
+    &lt;stop offset="0.05" color="1 0.4 0"/&gt;
+    &lt;stop offset="0.95" color="1 1 0.4"/&gt;
+  &lt;/gradient&gt;
+</pre>
+If used like this:
+<pre class="tex-verbatim">
+  &lt;path stroke="0" fill="1" gradient="linear" pen="3"&gt;
+    50 50 m 350 50 l 350 150 l 50 150 l h
+  &lt;/path&gt;
+</pre>
+it will look like this:
+<div class="tex-center"><p>
+  <object type="image/svg+xml" data="lingrad1.svg"
+      name="lingrad1"></object>
+</p></div>
+A radial gradient looks like this:
+<pre class="tex-verbatim">
+  &lt;gradient name="radial" type="radial" extend="yes"
+  	    coords="200 100 0 200 100 150"&gt;
+    &lt;stop offset="0" color="1 0 0"/&gt;
+    &lt;stop offset="0.5" color="0 0 1"/&gt;
+    &lt;stop offset="1" color="1 0 0"/&gt;
+  &lt;/gradient&gt;
+</pre>
+It will look like this:
+<div class="tex-center"><p>
+  <object type="image/svg+xml" data="radgrad1.svg"
+      name="radgrad1"></object>
+</p></div>
+A common use of radial gradients is to define glassy balls like this:
+<pre class="tex-verbatim">
+  &lt;gradient name="ball" type="radial" coords="-4 10 2 0 0 18"&gt;
+    &lt;stop offset="0" color="1 1 1"/&gt;
+    &lt;stop offset="1" color="0 0 1"/&gt;
+  &lt;/gradient&gt;
+</pre>
+Note that the gradient is centered at <span class="tex-emph">0 0</span>, so it needs to be
+moved to the location where it is used:
+<pre class="tex-verbatim">
+  &lt;path matrix="3 0 0 3 100 100" fill="1" gradient="ball"&gt;
+    18 0 0 18 0 0 e
+  &lt;/path&gt;
+</pre>
+<div class="tex-center"><p>
+  <object type="image/svg+xml" data="radgrad2.svg"
+      name="radgrad2"></object>
+</p></div>
+Normally, you would define a symbol looking like a glassy ball in your
+style sheet:
+<pre class="tex-verbatim">
+&lt;ipestyle&gt;
+  &lt;gradient name="ball" type="radial" coords="-4 10 2 0 0 18"&gt;
+    &lt;stop offset="0" color="1 1 1"/&gt;
+    &lt;stop offset="1" color="0 0 1"/&gt;
+  &lt;/gradient&gt;
+  &lt;symbol name="ball(x)" transformations="translations"&gt;
+    &lt;path fill="1" gradient="ball"&gt; 18 0 0 18 0 0 e &lt;/path&gt;
+  &lt;/symbol&gt;
+&lt;/ipestyle&gt;
+</pre>
+The glassy ball can then be used in the document using the <span class="tex-emph">Use
+  symbol</span> ipelet.  Note that <code>transformations="translations"</code>
+ensures that stretching your drawing does not change the glassy ball.
+Adding the <code>(x)</code> suffix to the symbol name allows you to resize
+the glassy ball by changing the symbol size from the properties (the
+same selector used to change the mark size).
+<p>For the precise syntax of the gradient definition see
+<a href="manual_48.html#id18">here</a>.  The easiest method of creating
+gradients, though, is to use an SVG editor such as <span class="tex-emph">Inkscape</span> and
+to convert the SVG gradient to Ipe format using <span class="tex-emph">Svgtoipe</span>.
+</div>
+</div></body></html>

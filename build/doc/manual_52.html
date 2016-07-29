@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<!-- XML file produced from file: manual.tex
+     using Hyperlatex v 15.02 (c) Otfried Cheong
+     on Emacs 24.3.1, Tue Jul 19 19:55:00 2016 -->
+<head>
+<title>Ipe Manual -- 11.2 Ipetoipe: converting Ipe file formats</title>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width,
+    initial-scale=1" /><link rel="stylesheet" href="manual.css" />
+<style type="text/css">
+.tex-maketitle { text-align: center; }
+div.tex-abstract { margin-left: 20%; margin-right: 10%; }
+h3.tex-abstract  { text-align: center; }
+div.tex-verse, div.tex-quote, div.tex-quotation, div.tex-math {
+  margin-left : 10%; 
+  margin-right : 10%;
+}
+.tex-normalsize { font-size: medium; }
+.tex-large { font-size: large; }
+.tex-Large { font-size: x-large; }
+.tex-LARGE { font-size: xx-large; }
+.tex-huge { font-size: xx-large; }
+.tex-Huge { font-size: xx-large; }
+.tex-small { font-size: small; }
+.tex-footnotesize { font-size: x-small; }
+.tex-scriptsize { font-size: x-small; }
+.tex-tiny { font-size: xx-small; }
+.tex-emph { font-style: italic; }
+.tex-strong { font-weight: bold; }
+.tex-bf { font-weight: bold; }
+.tex-it { font-style: italic; }
+.tex-tt { font-family: monospace; }
+.tex-underline { text-decoration: underline; }
+.tex-sf { font: sans-serif; }
+.tex-sc { font-variant: small-caps; }
+.tex-center { text-align: center; }
+.tex-mbox { white-space: nowrap; }
+.tex-verbatim, .tex-example {
+  border-radius: 16px;
+  box-shadow: #387BBE 0px 0px 12px 0px;
+  padding: 1em 1em;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+dl.tex-description {
+  padding-left: 2em;
+  padding-right: 2em;
+}
+dl.tex-description dt {
+  float: left;
+  clear: left;
+  color: green;
+  width: 200px;
+}
+dl.tex-description dd {
+  margin-left: 200px;
+  margin-right: 100px;
+}
+</style>
+
+</head>
+<body bgcolor="#ffffe6">
+<div data-role="page">
+<table width="100%" cellpadding=0 cellspacing=2><tr>
+    <td bgcolor="#99ccff"><a href="manual_53.html"><img border="0" alt="11.3 Iperender: exporting to a bitmap, EPS, or SVG" src="next.png"></a></td><td bgcolor="#99ccff"><a href="manual_50.html"><img border="0" alt="11 The command line programs" src="up.png"></a></td><td bgcolor="#99ccff"><a href="manual_51.html"><img border="0" alt="11.1 Ipe" src="previous.png"></a></td><td align="center" bgcolor="#99ccff" width="100%"><span class="tex-bf">11.2 Ipetoipe: converting Ipe file formats</span></td></tr></table>
+<div data-role="content">
+<h2>11.2 Ipetoipe: converting Ipe file formats</h2>
+<p>The auxiliary program <span class="tex-emph">ipetoipe</span> converts between the different
+Ipe file formats:
+<pre class="tex-verbatim">
+  ipetoipe ( -xml | -pdf ) { &lt;options&gt; } infile [ outfile ]
+</pre>
+The first argument determines the format of the output file.  If no
+output filename is provided, Ipe will try to guess it by appending one
+of the extensions "ipe" or "pdf" to the input file's basename.
+<p>For example, the command line syntax
+<pre class="tex-verbatim">
+  ipetoipe -pdf figure1.ipe
+</pre>
+converts <span class="tex-emph">figure1.ipe</span> to <span class="tex-emph">figure1.pdf</span>.
+<p>Ipetoipe understands the following options:
+<dl class="tex-description"><dt><span class="tex-bf"><code>-export</code></span></dt><dd> No Ipe markup is included in the resulting
+  output file.  Ipe will not be able to open a file created that way,
+  so make sure you keep your original!
+<dt><span class="tex-bf"><code>-markedview</code></span></dt><dd> (PDF only) <br />Only the marked views of
+  marked Ipe pages will be created in PDF format.  If all views of a
+  marked page are unmarked, the last view is exported. This is
+  convenient to make handouts for slides.
+<dt><span class="tex-bf"><code>-pages</code> from-to</span></dt><dd> (PDF only) <br />Restrict exporting to PDF to this page range.  This implies  the
+  <code>-export</code> option.
+<dt><span class="tex-bf"><code>-view</code> page-view</span></dt><dd> Only export this single view from the  document.   This  implies
+  the <code>-export</code> option.
+<dt><span class="tex-bf"><code>-runlatex</code></span></dt><dd>
+  Run  Latex even for XML output. This has the effect of including
+  the dimensions of each text object in the XML file.
+<dt><span class="tex-bf"><code>-nozip</code></span></dt><dd> 
+  Do not compress streams in PDF output.
+</dl>
+</div>
+</div></body></html>

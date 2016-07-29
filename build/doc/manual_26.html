@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<!-- XML file produced from file: manual.tex
+     using Hyperlatex v 15.02 (c) Otfried Cheong
+     on Emacs 24.3.1, Tue Jul 19 19:54:59 2016 -->
+<head>
+<title>Ipe Manual -- 5.5 Examples</title>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width,
+    initial-scale=1" /><link rel="stylesheet" href="manual.css" />
+<style type="text/css">
+.tex-maketitle { text-align: center; }
+div.tex-abstract { margin-left: 20%; margin-right: 10%; }
+h3.tex-abstract  { text-align: center; }
+div.tex-verse, div.tex-quote, div.tex-quotation, div.tex-math {
+  margin-left : 10%; 
+  margin-right : 10%;
+}
+.tex-normalsize { font-size: medium; }
+.tex-large { font-size: large; }
+.tex-Large { font-size: x-large; }
+.tex-LARGE { font-size: xx-large; }
+.tex-huge { font-size: xx-large; }
+.tex-Huge { font-size: xx-large; }
+.tex-small { font-size: small; }
+.tex-footnotesize { font-size: x-small; }
+.tex-scriptsize { font-size: x-small; }
+.tex-tiny { font-size: xx-small; }
+.tex-emph { font-style: italic; }
+.tex-strong { font-weight: bold; }
+.tex-bf { font-weight: bold; }
+.tex-it { font-style: italic; }
+.tex-tt { font-family: monospace; }
+.tex-underline { text-decoration: underline; }
+.tex-sf { font: sans-serif; }
+.tex-sc { font-variant: small-caps; }
+.tex-center { text-align: center; }
+.tex-mbox { white-space: nowrap; }
+.tex-verbatim, .tex-example {
+  border-radius: 16px;
+  box-shadow: #387BBE 0px 0px 12px 0px;
+  padding: 1em 1em;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+dl.tex-description {
+  padding-left: 2em;
+  padding-right: 2em;
+}
+dl.tex-description dt {
+  float: left;
+  clear: left;
+  color: green;
+  width: 200px;
+}
+dl.tex-description dd {
+  margin-left: 200px;
+  margin-right: 100px;
+}
+</style>
+
+</head>
+<body bgcolor="#ffffe6">
+<div data-role="page">
+<table width="100%" cellpadding=0 cellspacing=2><tr>
+    <td bgcolor="#99ccff"><img alt="" src="blank.png"></td><td bgcolor="#99ccff"><a href="manual_21.html"><img border="0" alt="5 Snapping" src="up.png"></a></td><td bgcolor="#99ccff"><a href="manual_25.html"><img border="0" alt="5.4 Interaction of the snapping modes" src="previous.png"></a></td><td align="center" bgcolor="#99ccff" width="100%"><span class="tex-bf">5.5 Examples</span></td></tr></table>
+<div data-role="content">
+<h2>5.5 Examples</h2>
+
+<p>It takes some time and practice to feel fully at ease with the different
+snapping modes, especially angular snapping. Here are some examples
+showing what can be done with angular snapping.
+
+<h4 id="id1">Example 1:</h4>
+
+We are given segments <i>s<sub>1</sub></i>, <i>s<sub>2</sub></i>, and <i>e</i>, and we want
+to add the dashed vertical extensions through <i>p</i> and <i>q</i>.
+<div class="tex-center"><p>
+  <object type="image/svg+xml" data="example1.svg"
+      name="example1"></object>
+</p></div>
+<ul class="tex-menu"><li>set <kbd>F4</kbd> and <kbd>F5</kbd> snapping on, go into <span class="tex-emph">line</span> mode, and
+  reset axis orientation with <kbd>Ctrl+F2</kbd>,
+<li>go near <i>p</i>, press <kbd>F1</kbd> and <kbd>F8</kbd> to set origin and
+  to turn on angular snap.
+<li>go near <i>p'</i>, click left, and extend segment to <i>s<sub>1</sub></i>.
+<li>go near <i>q</i>, press <kbd>F1</kbd> to reset origin, and draw second
+  extension in the same way.
+</ul>
+
+<h4 id="id2">Example 2:</h4>
+We are given the polygon <i>C</i>, and we want to draw the bracket
+<i>b</i>, indicating its vertical extension.
+<div class="tex-center"><p>
+  <object type="image/svg+xml" data="example2.svg"
+      name="example2"></object>
+</p></div>
+<ul class="tex-menu"><li>set <kbd>F4</kbd> and <kbd>F9</kbd> snapping on, go into <span class="tex-emph">line</span> mode, reset
+  axis orientation with <kbd>Ctrl+F2</kbd>, set snap angle to
+90 degrees.
+<li>go near <i>p</i>, press <kbd>F1</kbd> and <kbd>F8</kbd> to set origin and
+  angular snapping
+<li>go to <i>x</i>, click left, extend segment to <i>y</i>, click left
+<li>now we want to have <i>z</i> on a horizontal line through <i>q</i>:
+  go near <i>q</i>, and press <kbd>F1</kbd> and <kbd>F8</kbd> to reset origin
+  and to turn on angular snapping. Now both angular snapping modes are
+  on, the snap lines intersect in <i>z</i>.
+<li>click left at <i>z</i>, goto <i>x</i> and press <kbd>F1</kbd>, goto
+  <i>t</i> and finish bracket.
+</ul>
+
+<h4 id="id3">Example 3:</h4>
+We want to draw the following "skyline". The only problem is to get
+<i>q</i> horizontally aligned with <i>p</i>.
+<div class="tex-center"><p>
+  <object type="image/svg+xml" data="example3.svg"
+      name="example3"></object>
+</p></div>
+<ul class="tex-menu"><li>draw the baseline using automatic angular snapping to get it
+horizontal.
+<li>place <i>p</i> with boundary snapping, draw the rectilinear curve up to
+<i>r</i> with automatic angular snapping in
+90 degrees mode.
+<li>now go to <i>p</i> and press <kbd>F1</kbd> and <kbd>F8</kbd>. The snap lines
+intersect in <i>q</i>. Click there, turn off angular snapping with
+<kbd>Shift-F2</kbd>, and finish curve.  The last point is placed with
+boundary snapping.
+</ul>
+
+<h4 id="id4">Example 4:</h4>
+
+We want to draw a line through <i>p</i>, tangent to <i>C</i> in
+<i>q</i>.
+<div class="tex-center"><p>
+  <object type="image/svg+xml" data="example4.svg"
+      name="example4"></object>
+</p></div>
+<ul class="tex-menu"><li>with vertex snapping on, put origin at <i>p</i> with <kbd>F1</kbd>
+<li>go to <i>q</i> and press <kbd>F2</kbd>. This puts the base direction from
+  <i>p</i> to <i>q</i>.
+<li>set angular snapping with <kbd>F8</kbd> and draw line.
+</ul>
+
+<h4 id="id5">Example 5:</h4>
+We want to draw the following "windmill".  The angle of the sector and
+between sectors should be
+30 degrees.
+<div class="tex-center"><p>
+  <object type="image/svg+xml" data="example5.svg"
+      name="example5"></object>
+</p></div>
+<ul class="tex-menu"><li>set vertex snapping, snap angle to
+30 degrees,
+reset axis orientation with <kbd>Ctrl+F2</kbd>,
+<li>with automatic angular snapping, draw a horizontal segment <i>pq</i>.
+<li>go to <i>p</i>, place origin and turn on angular snapping with
+<kbd>F1</kbd> and <kbd>F8</kbd>,
+<li>duplicate segment with <kbd>d</kbd>, go to <i>q</i> and pick up <i>q</i>
+for rotation (with <font color="#0000ff">Alt</font> and the right mouse button, or by
+switching to rotate mode).  Rotate until segment falls on the next
+snap line.
+<li>turn off angular snapping with <kbd>F8</kbd>. Choose arc mode, variant
+"center &#38; two points".
+<li>go to <i>p</i>, click for center. Go to <i>q</i>, click for first
+endpoint of arc, and at <i>r</i> for the second endpoint. Select all,
+and group.
+<li>turn angular snapping on again. Duplicate sector, and rotate by
+60 degrees
+using angular snapping.
+<li>duplicate and rotate four more times.
+</ul>
+
+<h4 id="id6">Example 6:</h4>
+
+
+We want to draw a <i>c</i>-oriented polygon, where the angles between
+successive segments are multiples of
+30 degrees.
+The automatic angular snapping mode makes this pretty easy, but there is a
+little catch: How do we place the ultimate vertex such that it is at the
+same time properly aligned to the penultimate and to the very first vertex?
+<div class="tex-center"><p>
+  <object type="image/svg+xml" data="example6.svg"
+      name="example6"></object>
+</p></div>
+<ul class="tex-menu"><li>set snap angle to
+30 degrees,
+and turn on automatic angular snapping.
+<li>click first vertex <i>p</i> and draw the polygon up to the penultimate
+vertex <i>q</i>.
+<li>it remains to place <i>r</i> such that it is in a legal position both
+with respect to <i>q</i> and <i>p</i>. The automatic angular snapping
+mode ensures the position with respect to&nbsp;<i>q</i>. We will use
+angular snapping from&nbsp;<i>p</i> to get it right: Go near <i>p</i> and
+turn on vertex snapping. Press <kbd>F1</kbd> to place the origin
+at&nbsp;<i>p</i> and <kbd>F8</kbd> to turn on angular snapping. Now it is
+trivial to place&nbsp;<i>r</i>.
+</ul>
+</div>
+</div></body></html>

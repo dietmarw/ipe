@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<!-- XML file produced from file: manual.tex
+     using Hyperlatex v 15.02 (c) Otfried Cheong
+     on Emacs 24.3.1, Tue Jul 19 19:55:00 2016 -->
+<head>
+<title>Ipe Manual -- 8.8 Running Ipe under Wine on Linux</title>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width,
+    initial-scale=1" /><link rel="stylesheet" href="manual.css" />
+<style type="text/css">
+.tex-maketitle { text-align: center; }
+div.tex-abstract { margin-left: 20%; margin-right: 10%; }
+h3.tex-abstract  { text-align: center; }
+div.tex-verse, div.tex-quote, div.tex-quotation, div.tex-math {
+  margin-left : 10%; 
+  margin-right : 10%;
+}
+.tex-normalsize { font-size: medium; }
+.tex-large { font-size: large; }
+.tex-Large { font-size: x-large; }
+.tex-LARGE { font-size: xx-large; }
+.tex-huge { font-size: xx-large; }
+.tex-Huge { font-size: xx-large; }
+.tex-small { font-size: small; }
+.tex-footnotesize { font-size: x-small; }
+.tex-scriptsize { font-size: x-small; }
+.tex-tiny { font-size: xx-small; }
+.tex-emph { font-style: italic; }
+.tex-strong { font-weight: bold; }
+.tex-bf { font-weight: bold; }
+.tex-it { font-style: italic; }
+.tex-tt { font-family: monospace; }
+.tex-underline { text-decoration: underline; }
+.tex-sf { font: sans-serif; }
+.tex-sc { font-variant: small-caps; }
+.tex-center { text-align: center; }
+.tex-mbox { white-space: nowrap; }
+.tex-verbatim, .tex-example {
+  border-radius: 16px;
+  box-shadow: #387BBE 0px 0px 12px 0px;
+  padding: 1em 1em;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+dl.tex-description {
+  padding-left: 2em;
+  padding-right: 2em;
+}
+dl.tex-description dt {
+  float: left;
+  clear: left;
+  color: green;
+  width: 200px;
+}
+dl.tex-description dd {
+  margin-left: 200px;
+  margin-right: 100px;
+}
+</style>
+
+</head>
+<body bgcolor="#ffffe6">
+<div data-role="page">
+<table width="100%" cellpadding=0 cellspacing=2><tr>
+    <td bgcolor="#99ccff"><a href="manual_43.html"><img border="0" alt="8.9 Using cygwin latex on Windows" src="next.png"></a></td><td bgcolor="#99ccff"><a href="manual_34.html"><img border="0" alt="8 Advanced topics" src="up.png"></a></td><td bgcolor="#99ccff"><a href="manual_41.html"><img border="0" alt="8.7 Ipe on a USB-stick" src="previous.png"></a></td><td align="center" bgcolor="#99ccff" width="100%"><span class="tex-bf">8.8 Running Ipe under Wine on Linux</span></td></tr></table>
+<div data-role="content">
+<h2>8.8 Running Ipe under Wine on Linux</h2>
+
+<p>Ipe itself works fine under Wine, but there is an issue: We don't want
+to create a new tex installation for Windows under Wine, we want to
+reuse the Linux tex installation!
+<p>So first we need to make the pdflatex program available to Wine, by
+putting a symbolic link in the simulated <span class="tex-tt">C:</span> drive.
+<pre class="tex-verbatim">
+$ cd ~/.wine/drive_c/windows/
+$ ln -s /usr/bin/pdflatex pdflatex.exe
+</pre>
+<p>The second problem is that Ipe is not able to wait for the completion
+of the pdflatex call&mdash;it starts pdflatex, and then immediately tries
+to read the pdflatex output, which of course fails.  The solution is
+to make Ipe wait for a specified number of milliseconds before trying
+to read the pdflatex output.
+<p>You achieve this by creating a small text file called
+<a href="manual_40.html#id1">ipe.conf</a> and placing it in the top-level Ipe
+directory (that is, the directory that contains <span class="tex-emph">readme.txt</span> and
+<span class="tex-emph">gpl.txt</span>).  The contents of the file should be:
+<pre class="tex-verbatim">
+IPEWINE=1000
+IPELATEXPATH=c:\windows
+</pre>
+<p>(You can define any other environment variable in the same file.)
+</div>
+</div></body></html>

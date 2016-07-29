@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<!-- XML file produced from file: manual.tex
+     using Hyperlatex v 15.02 (c) Otfried Cheong
+     on Emacs 24.3.1, Tue Jul 19 19:54:59 2016 -->
+<head>
+<title>Ipe Manual -- 5.4 Interaction of the snapping modes</title>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width,
+    initial-scale=1" /><link rel="stylesheet" href="manual.css" />
+<style type="text/css">
+.tex-maketitle { text-align: center; }
+div.tex-abstract { margin-left: 20%; margin-right: 10%; }
+h3.tex-abstract  { text-align: center; }
+div.tex-verse, div.tex-quote, div.tex-quotation, div.tex-math {
+  margin-left : 10%; 
+  margin-right : 10%;
+}
+.tex-normalsize { font-size: medium; }
+.tex-large { font-size: large; }
+.tex-Large { font-size: x-large; }
+.tex-LARGE { font-size: xx-large; }
+.tex-huge { font-size: xx-large; }
+.tex-Huge { font-size: xx-large; }
+.tex-small { font-size: small; }
+.tex-footnotesize { font-size: x-small; }
+.tex-scriptsize { font-size: x-small; }
+.tex-tiny { font-size: xx-small; }
+.tex-emph { font-style: italic; }
+.tex-strong { font-weight: bold; }
+.tex-bf { font-weight: bold; }
+.tex-it { font-style: italic; }
+.tex-tt { font-family: monospace; }
+.tex-underline { text-decoration: underline; }
+.tex-sf { font: sans-serif; }
+.tex-sc { font-variant: small-caps; }
+.tex-center { text-align: center; }
+.tex-mbox { white-space: nowrap; }
+.tex-verbatim, .tex-example {
+  border-radius: 16px;
+  box-shadow: #387BBE 0px 0px 12px 0px;
+  padding: 1em 1em;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+dl.tex-description {
+  padding-left: 2em;
+  padding-right: 2em;
+}
+dl.tex-description dt {
+  float: left;
+  clear: left;
+  color: green;
+  width: 200px;
+}
+dl.tex-description dd {
+  margin-left: 200px;
+  margin-right: 100px;
+}
+</style>
+
+</head>
+<body bgcolor="#ffffe6">
+<div data-role="page">
+<table width="100%" cellpadding=0 cellspacing=2><tr>
+    <td bgcolor="#99ccff"><a href="manual_26.html"><img border="0" alt="5.5 Examples" src="next.png"></a></td><td bgcolor="#99ccff"><a href="manual_21.html"><img border="0" alt="5 Snapping" src="up.png"></a></td><td bgcolor="#99ccff"><a href="manual_24.html"><img border="0" alt="5.3 Angular snapping" src="previous.png"></a></td><td align="center" bgcolor="#99ccff" width="100%"><span class="tex-bf">5.4 Interaction of the snapping modes</span></td></tr></table>
+<div data-role="content">
+<h2>5.4 Interaction of the snapping modes</h2>
+
+<p>Not all the snapping modes can be active at the same time, even if all
+buttons are pressed. Here we have a close look at the possible
+interactions, and the priorities of snapping.
+<p>The two angular snapping modes restrict the possible mouse positions
+to a <span class="tex-emph">one-dimensional</span> subspace of the canvas. Therefore, they are
+incompatible with the modes that try to snap to a zero-dimensional
+subspace, namely vertex snapping, intersection snapping, and grid
+snapping. Consequently, when one of the angular snapping modes is
+<span class="tex-emph">on</span>, vertex snapping, intersection snapping, and grid snapping
+are ineffective.
+<p>On the other hand, it is reasonable to snap to boundaries while in an
+angular snapping mode, and this function is actually implemented
+correctly. When both angular and boundary snapping are <span class="tex-emph">on</span>, Ipe
+will compute intersections between the snap lines with the boundaries
+of your objects, and whenever the mouse position <span class="tex-emph">on</span> the snap
+line comes close enough to an intersection, the mouse is snapped to
+that intersection.
+<p>The two angular snapping modes themselves can also coexist in the same
+fashion. If both angular and automatic angular snapping are enabled,
+Ipe computes the intersection point between the snap lines defined by
+the two origins and snaps there. It the snap lines are parallel or
+coincide, automatic angular snapping is used.
+<p>When no angular snapping mode is active, Ipe has three
+priorities. First, Ipe checks whether the closest vertex or
+intersection point is close enough. If that is not the case, the
+closest boundary edge is determined. If even that is too far away, Ipe
+uses grid snapping (assuming all these modes are enabled).
+<p>Note that this can actually mean that snapping is <span class="tex-emph">not</span> to the
+<span class="tex-emph">closest</span> point on an object. Especially for intersections of two
+straight edges, the closest point can never be the intersection point,
+as in the figure below!
+<div class="tex-center"><p>
+  <object type="image/svg+xml" data="intersection.svg"
+      name="intersection"></object>
+</p></div>
+</div>
+</div></body></html>

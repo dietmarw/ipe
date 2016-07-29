@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<!-- XML file produced from file: manual.tex
+     using Hyperlatex v 15.02 (c) Otfried Cheong
+     on Emacs 24.3.1, Tue Jul 19 19:55:00 2016 -->
+<head>
+<title>Ipe Manual -- 9.3 Ipe object elements</title>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width,
+    initial-scale=1" /><link rel="stylesheet" href="manual.css" />
+<style type="text/css">
+.tex-maketitle { text-align: center; }
+div.tex-abstract { margin-left: 20%; margin-right: 10%; }
+h3.tex-abstract  { text-align: center; }
+div.tex-verse, div.tex-quote, div.tex-quotation, div.tex-math {
+  margin-left : 10%; 
+  margin-right : 10%;
+}
+.tex-normalsize { font-size: medium; }
+.tex-large { font-size: large; }
+.tex-Large { font-size: x-large; }
+.tex-LARGE { font-size: xx-large; }
+.tex-huge { font-size: xx-large; }
+.tex-Huge { font-size: xx-large; }
+.tex-small { font-size: small; }
+.tex-footnotesize { font-size: x-small; }
+.tex-scriptsize { font-size: x-small; }
+.tex-tiny { font-size: xx-small; }
+.tex-emph { font-style: italic; }
+.tex-strong { font-weight: bold; }
+.tex-bf { font-weight: bold; }
+.tex-it { font-style: italic; }
+.tex-tt { font-family: monospace; }
+.tex-underline { text-decoration: underline; }
+.tex-sf { font: sans-serif; }
+.tex-sc { font-variant: small-caps; }
+.tex-center { text-align: center; }
+.tex-mbox { white-space: nowrap; }
+.tex-verbatim, .tex-example {
+  border-radius: 16px;
+  box-shadow: #387BBE 0px 0px 12px 0px;
+  padding: 1em 1em;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+dl.tex-description {
+  padding-left: 2em;
+  padding-right: 2em;
+}
+dl.tex-description dt {
+  float: left;
+  clear: left;
+  color: green;
+  width: 200px;
+}
+dl.tex-description dd {
+  margin-left: 200px;
+  margin-right: 100px;
+}
+</style>
+
+</head>
+<body bgcolor="#ffffe6">
+<div data-role="page">
+<table width="100%" cellpadding=0 cellspacing=2><tr>
+    <td bgcolor="#99ccff"><a href="manual_48.html"><img border="0" alt="9.4 The &lt;ipestyle&gt; element" src="next.png"></a></td><td bgcolor="#99ccff"><a href="manual_44.html"><img border="0" alt="9 The Ipe file format" src="up.png"></a></td><td bgcolor="#99ccff"><a href="manual_46.html"><img border="0" alt="9.2 The &lt;page&gt; element" src="previous.png"></a></td><td align="center" bgcolor="#99ccff" width="100%"><span class="tex-bf">9.3 Ipe object elements</span></td></tr></table>
+<div data-role="content">
+<h2>9.3 Ipe object elements</h2>
+
+<h4 id="id1">Common attributes</h4>
+<dl class="tex-description"><dt><span class="tex-bf">layer</span></dt><dd> (optional) Only allowed on "top-level" objects, that
+  is, objects directly inside a <code>&lt;page&gt;</code> element.  The value
+  indicates into which layer the object goes.  If the attribute is
+  missing, the object goes into the same layer as the preceding
+  object.  If the first object has no layer attribute, it goes into
+  the layer defined first in the page, or the default "alpha" layer.
+<dt><span class="tex-bf">matrix</span></dt><dd> (optional) A sequence of six real numbers,
+  separated by white space, indicating a transformation matrix for all
+  coordinates inside the element (including embedded elements if this is
+  a <code>&lt;group&gt;</code> element).  A missing <code>matrix</code> attribute is
+  interpreted as the identity matrix.
+<dt><span class="tex-bf">pin</span></dt><dd> (optional) Possible values are <code>yes</code> (object is fixed
+  on the page), <code>h</code> (object is pinned horizontally, but can move
+  in the vertical direction), and <code>v</code> (the opposite).  The
+  default is no pinning.
+<dt><span class="tex-bf">transformations</span></dt><dd> (optional) This attribute determines how
+  objects can be deformed by transformations. Possible values are
+  <span class="tex-emph">affine</span> (the default), <span class="tex-emph">rigid</span>, and <span class="tex-emph">translations</span>.
+</dl>
+
+<h4 id="id2">Color attribute values</h4>
+<p>A color attribute value is either a symbolic name defined in one of
+the style sheets of the document, one of the predefined names
+"black" or "white", a single real number between <i>0</i>&nbsp;(black) and
+<i>1</i>&nbsp;(white) indicating a gray level, or three real numbers in the
+range&nbsp;<i>[0,1]</i> indicating the red, green, and blue component (in this
+order), separated by white space.
+
+<h4 id="id3">Path construction operators</h4>
+<p>Graphical shapes in Ipe are described using a series of "path
+construction operators" with arguments. This generalizes the PDF path
+construction syntax.
+<p>Each operator follows its arguments.  The operators are
+<ul class="tex-menu"><li><code>m</code> (moveto) (1 point argument): begin new subpath.
+<li><code>l</code> (lineto) (1 point argument): add straight segment to
+  subpath.
+<li><code>c</code> (cubic B-spline) (<i>n</i> point arguments): 
+  add a uniform cubic B-spline with <i>n+1</i> control points (the current
+  position plus the <i>n</i> arguments).  If <i>n = 3</i>, this is equivalent to
+  a single cubic B&eacute;zier spline, if <i>n = 2</i> it is equivalent to a
+  single quadratic B&eacute;zier spline.
+<li><code>q</code> (deprecated) (2 point arguments): identical to 'c'.
+<li><code>e</code> (ellipse) (1 matrix argument): add a closed subpath
+  consisting of an ellipse, the ellipse is the image of the unit
+  circle under the transformation described by the matrix.
+<li><code>a</code> (arcto) (1 matrix argument, 1 point argument): add an
+  elliptic arc, on the ellipse describe by the matrix, from current
+  position to given point.
+<li><code>s</code> (deprecated) (<i>n</i> point arguments): add an "old
+  style"  uniform cubic B-spline as used by Ipe up to version&nbsp;7.1.6.
+<li><code>u</code> (closed spline) (<i>n</i> point arguments): add a closed
+  subpath consisting of a closed uniform B-spline with <i>n</i> control
+  points,
+<li><code>h</code> (closepath) (no arguments): close the current subpath.
+  No more segments can be added to this subpath, so the next operator
+  (if there is one) must start a new subpath.
+</ul>
+Paths consisting of more than one closed loop are allowed.  A subpath
+can consist of any mix of straight segments, elliptic arcs, and
+B-splines.
+
+<h3 id="id4">9.3.1 The <span class="tex-tt">&lt;group&gt;</span> element</h3>
+<p>The <code>&lt;group&gt;</code> element allows to group objects together, so that
+they appear as one in the user interface.  
+
+<h4 id="id5">Attributes</h4>
+<dl class="tex-description"><dt><span class="tex-bf">clip</span></dt><dd> (optional) The value is a sequence of path construction
+  operators, forming a clipping path for the objects inside the group.
+<dt><span class="tex-bf">url</span></dt><dd> (optional) The value is a link destination.
+<dt><span class="tex-bf">decoration</span></dt><dd> (optional) The name of a decoration symbol.  The
+  default is <span class="tex-emph">normal</span>, meaning no decoration.
+</dl>
+<p>The contents of the <code>&lt;group&gt;</code> element is a series of Ipe object
+elements.
+
+<h3 id="id6">9.3.2 The <span class="tex-tt">&lt;image&gt;</span> element</h3>
+
+<h4 id="id7">Attributes</h4>
+<dl class="tex-description"><dt><span class="tex-bf">bitmap</span></dt><dd> (required) Value is an integer referring
+  to a bitmap defined in a <code>&lt;bitmap&gt;</code> element in the document,
+<dt><span class="tex-bf">rect</span></dt><dd> (required) Four real coordinates separated by white space,
+  in the order <i>x<sub>1</sub></i>, <i>y<sub>1</sub></i>, <i>x<sub>2</sub></i>, <i>y<sub>2</sub></i>, indicating two
+  opposite corners of the image in Ipe coordinates).
+</dl>
+<p>The image element is normally empty.  However, it is allowed to omit
+the <code>bitmap</code> attribute.  In this case, the <code>&lt;image&gt;</code> must
+carry all the attributes of the <code>&lt;bitmap&gt;</code> element, with the
+exception of <code>id</code>.  The element contents is then the bitmap data,
+as described for <code>&lt;bitmap&gt;</code>.
+
+<h3 id="id8">9.3.3 The <span class="tex-tt">&lt;use&gt;</span> element</h3>
+<p>The <code>&lt;use&gt;</code> element refers to a symbol (an Ipe object) defined in
+the style sheet.  The attributes <code>stroke</code>, <code>fill</code>,
+<code>pen</code>, and <code>size</code> make sense only when the symbol accepts
+these parameters.
+
+<h4 id="id9">Attributes</h4>
+<dl class="tex-description"><dt><span class="tex-bf">name</span></dt><dd> (required) The name of a <code>symbol</code> defined in a style
+  sheet of the document.
+<dt><span class="tex-bf">pos</span></dt><dd> (optional) Position of the symbol on the page (two real
+  numbers, separated by white space).  This is the location of the
+  origin of the symbol coordinate system.  The default is the origin.
+<dt><span class="tex-bf">stroke</span></dt><dd> (optional) A stroke color (used whereever the symbol
+  uses the symbolic color "sym-stroke").  The default is black.
+<dt><span class="tex-bf">fill</span></dt><dd> (optional) A fill color (used whereever the symbol uses
+  the symbolic color "sym-fill").  The default is white.
+<dt><span class="tex-bf">pen</span></dt><dd> (optional) A line width (used whereever the symbol uses
+  the symbolic value "sym-pen").  The default is "normal".
+<dt><span class="tex-bf">size</span></dt><dd> (optional) The size of the symbol, either a symbolic size
+  (of type "symbol size"), or an absolute scaling factor.  The
+  default is <i>1.0</i>.
+</dl>
+<p>The <code>&lt;use&gt;</code> element must be empty.
+
+<h3 id="id10">9.3.4 The <span class="tex-tt">&lt;text&gt;</span> element</h3>
+
+<h4 id="id11">Attributes</h4>
+<dl class="tex-description"><dt><span class="tex-bf">stroke</span></dt><dd> (optional) The stroke color. If the attribute is
+  missing, black will be used.
+<dt><span class="tex-bf">type</span></dt><dd> (optional) Possible values are <span class="tex-emph">label</span> (the default)
+  and <span class="tex-emph">minipage</span>.
+<dt><span class="tex-bf">size</span></dt><dd> (optional) The font size&mdash;either a symbolic name defined
+  in a style sheet, or a real number.  The default is "normal".
+<dt><span class="tex-bf">pos</span></dt><dd> (required) Two real numbers separated by white space,
+  defining the position of the text on the paper.
+<dt><span class="tex-bf">width</span></dt><dd> (required for minipage objects, optional for label
+  objects) The width of the object in points.
+<dt><span class="tex-bf">height</span></dt><dd> (optional) The total height of the object in points.
+<dt><span class="tex-bf">depth</span></dt><dd> (optional) The depth of the object in points.
+<dt><span class="tex-bf">valign</span></dt><dd> (optional) Possible values are <span class="tex-emph">top</span> (default
+  for a minipage object), <span class="tex-emph">bottom</span> (default for a label object),
+  <span class="tex-emph">center</span>, and <span class="tex-emph">baseline</span>.
+<dt><span class="tex-bf">halign</span></dt><dd> (optional, label only) Possible values are <span class="tex-emph">left</span>,
+  <span class="tex-emph">right</span>, and <span class="tex-emph">center</span>. <span class="tex-emph">left</span> is the default.  This
+  determines the position of the reference point with respect to the
+  text box.  
+<dt><span class="tex-bf">style</span></dt><dd> (optional, minipage only) Selects a LaTeX "style" to
+  be used for formatting the text, and must be a symbolic name defined
+  in a style sheet.  The standard style sheet defines the styles
+  "normal", "center", "itemize", and "item".  If the
+  attribute is not present, the "normal" style is applied.
+<dt><span class="tex-bf">opacity</span></dt><dd> (optional) Opacity of the element.  This must be a
+  symbolic name. The default is&nbsp;"normal", meaning fully opaque.
+</dl>  
+<p>The dimensions are recomputed by Ipe when running LaTeX, with the
+exception of <code>width</code> for minipage objects whose width is fixed.
+<p>The contents of the <code>&lt;text&gt;</code> element must be a legal LaTeX
+fragment that can be interpreted by LaTeX inside <code>\hbox</code>,
+possibly using the macros or packages defined in the preamble.
+
+<h3 id="id12">9.3.5 The <span class="tex-tt">&lt;path&gt;</span> element</h3>
+
+<h4 id="id13">Attributes</h4>
+<dl class="tex-description"><dt><span class="tex-bf">stroke</span></dt><dd> (optional) The stroke color. If the attribute is
+  missing, the shape will not be stroked.
+<dt><span class="tex-bf">fill</span></dt><dd> (optional) The fill color.  If the attribute is missing,
+  the shape will not be filled.
+<dt><span class="tex-bf">dash</span></dt><dd> (optional) Either a symbolic name defined in a style
+  sheet, or a dash pattern in PDF format, such as "[3 1] 0" for
+  "three pixels on, one off, starting with the first pixel".
+  If the attribute is missing, a solid line is drawn.
+<dt><span class="tex-bf">pen</span></dt><dd> (optional) The line width, either symbolic (defined in
+  a style sheet), or as a single real number.  The default value is
+  "normal". 
+<dt><span class="tex-bf">cap</span></dt><dd> (optional) The <span class="tex-emph">line cap</span> setting of PDF as an
+  integer.  If the argument is missing, the setting from the style
+  sheet is used.
+<dt><span class="tex-bf">join</span></dt><dd> (optional) The <span class="tex-emph">line join</span> setting of PDF as an
+  integer. If the argument is missing, the setting from the style
+  sheet is used.
+<dt><span class="tex-bf">fillrule</span></dt><dd> (optional) Possible values are <code>wind</code> and
+  <code>eofill</code>, selecting one of two algorithms for determining
+  whether a point lies inside a filled object. If the argument is
+  missing, the setting from the style sheet is used.
+<dt><span class="tex-bf">arrow</span></dt><dd> (optional) The value consists of a symbolic name, say
+  "triangle" for an arrow type (a symbol with name
+  "arrow/triangle(spx)"), followed by a slash and the size of the arrow.
+  The size is either a symbolic name (of type "arrowsize") defined
+  in a style sheet, or a real number.  If the attribute is missing, no
+  arrow is drawn.
+<dt><span class="tex-bf">rarrow</span></dt><dd> (optional) Same for an arrow in the reverse direction
+  (at the beginning of the first subpath).
+<dt><span class="tex-bf">opacity</span></dt><dd> (optional) Opacity of the element.  This must be a
+  symbolic name. The default is&nbsp;"normal", meaning fully opaque.
+<dt><span class="tex-bf">tiling</span></dt><dd> (optional) A tiling pattern to be used to fill the
+  element.  The default is not to tile the element.  If the element is
+  not filled, then the tiling pattern is ignored.
+<dt><span class="tex-bf">gradient</span></dt><dd> (optional) A gradient pattern to be used to fill the
+  element.  If the element is not filled, then the gradient pattern is
+  ignored. (The fill color is only used for rendering where gradients
+  are not available, for instance currently in Postscript.)
+  If <code>gradient</code> is set, then <code>tiling</code> is ignored.
+</dl>
+<p>The contents of the <code>&lt;path&gt;</code> element is a sequence of path
+construction operators. The entire shape will be stroked and/or filled
+with a single stroke and fill operation.
+</div>
+</div></body></html>

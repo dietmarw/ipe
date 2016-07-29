@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<!-- XML file produced from file: manual.tex
+     using Hyperlatex v 15.02 (c) Otfried Cheong
+     on Emacs 24.3.1, Tue Jul 19 19:54:59 2016 -->
+<head>
+<title>Ipe Manual -- 6 Stylesheets</title>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width,
+    initial-scale=1" /><link rel="stylesheet" href="manual.css" />
+<style type="text/css">
+.tex-maketitle { text-align: center; }
+div.tex-abstract { margin-left: 20%; margin-right: 10%; }
+h3.tex-abstract  { text-align: center; }
+div.tex-verse, div.tex-quote, div.tex-quotation, div.tex-math {
+  margin-left : 10%; 
+  margin-right : 10%;
+}
+.tex-normalsize { font-size: medium; }
+.tex-large { font-size: large; }
+.tex-Large { font-size: x-large; }
+.tex-LARGE { font-size: xx-large; }
+.tex-huge { font-size: xx-large; }
+.tex-Huge { font-size: xx-large; }
+.tex-small { font-size: small; }
+.tex-footnotesize { font-size: x-small; }
+.tex-scriptsize { font-size: x-small; }
+.tex-tiny { font-size: xx-small; }
+.tex-emph { font-style: italic; }
+.tex-strong { font-weight: bold; }
+.tex-bf { font-weight: bold; }
+.tex-it { font-style: italic; }
+.tex-tt { font-family: monospace; }
+.tex-underline { text-decoration: underline; }
+.tex-sf { font: sans-serif; }
+.tex-sc { font-variant: small-caps; }
+.tex-center { text-align: center; }
+.tex-mbox { white-space: nowrap; }
+.tex-verbatim, .tex-example {
+  border-radius: 16px;
+  box-shadow: #387BBE 0px 0px 12px 0px;
+  padding: 1em 1em;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+dl.tex-description {
+  padding-left: 2em;
+  padding-right: 2em;
+}
+dl.tex-description dt {
+  float: left;
+  clear: left;
+  color: green;
+  width: 200px;
+}
+dl.tex-description dd {
+  margin-left: 200px;
+  margin-right: 100px;
+}
+</style>
+
+</head>
+<body bgcolor="#ffffe6">
+<div data-role="page">
+<table width="100%" cellpadding=0 cellspacing=2><tr>
+    <td bgcolor="#99ccff"><a href="manual_28.html"><img border="0" alt="7 Presentations" src="next.png"></a></td><td bgcolor="#99ccff"><a href="manual.html"><img border="0" alt="Top" src="up.png"></a></td><td bgcolor="#99ccff"><a href="manual_21.html"><img border="0" alt="5 Snapping" src="previous.png"></a></td><td align="center" bgcolor="#99ccff" width="100%"><span class="tex-bf">6 Stylesheets</span></td></tr></table>
+<div data-role="content">
+<h1>6 Stylesheets</h1>
+
+<p>The symbolic attributes appearing in an Ipe document are translated to
+absolute values for rendering by a <span class="tex-emph">stylesheet</span> that is attached
+to the document.  Documents can have multiple "cascaded"
+stylesheets, the sheets form a stack, and symbols are looked up from
+top to bottom.  At the bottom of any stylesheet cascade is always the
+minimal <span class="tex-emph">standard</span> style sheet, which is built into Ipe.  
+<p>When you create a new empty document, it automatically gets a copy of
+this standard style sheet (which does little more than define the
+"normal" attribute for each kind of attribute).  In addition, Ipe
+inserts a predefined list of stylesheets.  The list of these
+stylesheets can be <a href="manual_39.html">customized</a> using an ipelet,
+using Ipe's command line options, and an environment variable.  By
+default, a new document gets the stylesheet <span class="tex-emph">basic</span> that comes
+with Ipe.
+<p>The stylesheet dialog (in the <span class="tex-emph">Edit</span> menu under
+<span class="tex-emph">Stylesheets</span>) allows you to inspect the cascade of stylesheets
+associated with your document, to add and remove stylesheets, and to
+change their order.  You can also save individual stylesheets.
+<p>The stylesheets of your document also determine the symbolic choices
+you have in the Ipe user interface.  If you feel that Ipe does not
+offer you the right choice of colors, pen widths, etc., you are ready
+to make your own style sheet!  Ipe's <span class="tex-emph">styles</span> directory contains a few
+examples to look at. The <span class="tex-emph">colors.isy</span> stylesheet defines all the
+colors of the X11 color database - you could make a selection of these
+for your own use.
+<p>When a stylesheet is "added" to an Ipe document, the contents of the
+stylesheet file is copied into the Ipe document.  Subsequent
+modification of the stylesheet file has no effect on the Ipe document.
+The right way to modify your stylesheet is to either "add" it again,
+and then to delete the <span class="tex-emph">old</span> copy from your stylesheet cascade
+(the one further down in the list), or to use the <span class="tex-emph">Update
+  stylesheets</span> function in the <span class="tex-emph">Edit</span> menu.  This function
+assumes that the stylesheet file is in the same directory as the
+document and that the filename coincides with the name of the
+stylesheet (plus the extension <span class="tex-emph">.isy</span>).
+<p>Removing or replacing a stylesheet can cause some of the symbolic
+attributes in your document to become undefined.  This is not a
+disaster&mdash;Ipe will simply use some default value for any undefined
+symbolic attribute.  To allow you to diagnose the problem, Ipe will
+show a warning listing all undefined symbolic attributes.
+<p>The style sheet is also responsible for determining the paper and
+frame size.  Ipe's default paper size is the ISO standard A4.  If you
+wish to use letter size paper instead, include this style sheet:
+<pre class="tex-verbatim">
+   &lt;ipestyle name="letterpaper"&gt;
+     &lt;layout paper="612 792" origin="0 0" frame="612 792"/&gt;
+   &lt;/ipestyle&gt;
+</pre>
+<p>We discuss a few stylesheet topics below.  Other stylesheet
+definitions that are (mostly) meant for PDF presentations are
+discussed in the next section.
+
+<h4 id="id1">Symbols.</h4>
+<p>Style sheets can also contain <span class="tex-emph">symbols</span>, such as marks and
+arrows, background patterns, or logos.  These are named Ipe objects
+that can be referenced by the document. If your document's stylesheets
+define a symbol named <span class="tex-emph">Background</span>, it will be displayed
+automatically on all pages.  You can create and use symbols using the
+<span class="tex-emph">Symbols</span> ipelet.  Here is a (silly) example of a style sheet
+that defines such a background:
+<pre>&lt;ipestyle name="background"&gt;
+&lt;symbol name="Background" xform="yes"&gt;
+&lt;text pos="10 10" stroke="black" size="LARGE"&gt;
+Background text
+&lt;/text&gt;
+&lt;/symbol&gt;
+&lt;/ipestyle&gt;
+</pre>
+<p>Note the use of the <code>xform</code> attribute&mdash;it ensures that the
+background is embedded only once into PDF document.  This can make a
+huge difference if your background is a complicated object.
+<p>Symbols can be parameterized with a stroke color, fill color, pen
+size, and symbol size.  This means that the actual value of these
+attributes is only set when the symbol is used in the document (not in
+the symbol definition).  The name of a parameterized symbol must end
+with a pair of parentheses containing some of the letters "s"
+(stroke), "f" (fill), "p" (pen), "x" (symbol size), in this
+order.  The symbol definition can then use the special attribute
+values <code>sym-stroke</code>, <code>sym-fill</code>, and <code>sym-pen</code>.  A
+resizable symbol is automatically magnified by the symbol size set in
+the symbol reference.
+<p>You can also use a stylesheet to define additional mark shapes, arrow
+shapes, or tiling patterns.
+
+<h4 id="id2">Latex preamble.</h4>
+<p>Stylesheets can also define a piece of LaTeX-preamble for your
+document.  When your text objects are processed by LaTeX, the
+preamble used consists of the pieces on the style sheet cascade, from
+bottom to top, followed by the preamble set for the document itself.
+
+<h4 id="id3">Decorations.</h4>
+<p>A <span class="tex-emph">decoration</span> is a symbol that can be used to decorate a group
+object.  Its name must start with the string <span class="tex-emph">decoration/</span>, and
+it should contain either a path object or a group of path objects.
+<p>Ipe resizes these path objects so that they fit nicely around the
+bounding box of the group object being decorated.  For this to work
+correctly, the decoration object must be drawn such that it decorates
+the rectangle with corners at <i>(100, 100)</i> and <i>(300, 200)</i>. 
+<p>To make a decoration symbol, follow these steps:
+<ul class="tex-itemize"><li>Draw a rectangle. Select <span class="tex-emph">Edit as XML</span> from its context
+  menu, and change the coordinates to look as follows:
+<pre class="tex-verbatim">
+&lt;path stroke="black" fill="lightblue"&gt;
+100 100 m
+300 100 l
+300 200 l
+100 200 l
+h
+&lt;/path&gt;
+</pre>
+<li>Draw your decoration so that it fits this rectangle.  You should
+  draw only path objects.
+<li>Delete the rectangle from the first step.
+<li>If the decoration consists of more than one object, group them
+  all together.
+<li>Save this object as a symbol whose name starts with
+  <span class="tex-emph">decoration/</span> (including the slash).  You can do this either
+  using <span class="tex-emph">create new symbol</span> in the <span class="tex-emph">symbols</span> ipelet, or by
+  selecting <span class="tex-emph">Edit as XML</span> from the object's context menu and
+  copying the code into a stylesheet open in your text editor.
+</ul>
+<p>For inspiration, have a look at the decoration symbols in the
+stylesheet <span class="tex-emph">decorations.isy</span> that comes with Ipe.
+
+</div>
+</div></body></html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<!-- XML file produced from file: manual.tex
+     using Hyperlatex v 15.02 (c) Otfried Cheong
+     on Emacs 24.3.1, Tue Jul 19 19:55:00 2016 -->
+<head>
+<title>Ipe Manual -- 9.4 The &lt;ipestyle&gt; element</title>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width,
+    initial-scale=1" /><link rel="stylesheet" href="manual.css" />
+<style type="text/css">
+.tex-maketitle { text-align: center; }
+div.tex-abstract { margin-left: 20%; margin-right: 10%; }
+h3.tex-abstract  { text-align: center; }
+div.tex-verse, div.tex-quote, div.tex-quotation, div.tex-math {
+  margin-left : 10%; 
+  margin-right : 10%;
+}
+.tex-normalsize { font-size: medium; }
+.tex-large { font-size: large; }
+.tex-Large { font-size: x-large; }
+.tex-LARGE { font-size: xx-large; }
+.tex-huge { font-size: xx-large; }
+.tex-Huge { font-size: xx-large; }
+.tex-small { font-size: small; }
+.tex-footnotesize { font-size: x-small; }
+.tex-scriptsize { font-size: x-small; }
+.tex-tiny { font-size: xx-small; }
+.tex-emph { font-style: italic; }
+.tex-strong { font-weight: bold; }
+.tex-bf { font-weight: bold; }
+.tex-it { font-style: italic; }
+.tex-tt { font-family: monospace; }
+.tex-underline { text-decoration: underline; }
+.tex-sf { font: sans-serif; }
+.tex-sc { font-variant: small-caps; }
+.tex-center { text-align: center; }
+.tex-mbox { white-space: nowrap; }
+.tex-verbatim, .tex-example {
+  border-radius: 16px;
+  box-shadow: #387BBE 0px 0px 12px 0px;
+  padding: 1em 1em;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+dl.tex-description {
+  padding-left: 2em;
+  padding-right: 2em;
+}
+dl.tex-description dt {
+  float: left;
+  clear: left;
+  color: green;
+  width: 200px;
+}
+dl.tex-description dd {
+  margin-left: 200px;
+  margin-right: 100px;
+}
+</style>
+
+</head>
+<body bgcolor="#ffffe6">
+<div data-role="page">
+<table width="100%" cellpadding=0 cellspacing=2><tr>
+    <td bgcolor="#99ccff"><img alt="" src="blank.png"></td><td bgcolor="#99ccff"><a href="manual_44.html"><img border="0" alt="9 The Ipe file format" src="up.png"></a></td><td bgcolor="#99ccff"><a href="manual_47.html"><img border="0" alt="9.3 Ipe object elements" src="previous.png"></a></td><td align="center" bgcolor="#99ccff" width="100%"><span class="tex-bf">9.4 The <span class="tex-tt">&lt;ipestyle&gt;</span> element</span></td></tr></table>
+<div data-role="content">
+<h2>9.4 The <span class="tex-tt">&lt;ipestyle&gt;</span> element</h2>
+
+<h4 id="id1">Attributes</h4>
+<dl class="tex-description"><dt><span class="tex-bf">name</span></dt><dd> (optional) The name serves to identify the style sheet
+  informally, and can be used to automatically update the style sheet
+  from a file with the matching name.
+</dl>
+<p>The contents of the <code>&lt;ipestyle&gt;</code> element is a series of style
+definition elements, in no particular order.  These elements are
+described below.
+
+<h3 id="id2">9.4.1 The <span class="tex-tt">&lt;symbol&gt;</span> element</h3>
+
+<h4 id="id3">Attributes</h4>
+<dl class="tex-description"><dt><span class="tex-bf">name</span></dt><dd> (required) The name identifies the symbol and must
+  be unique in the style sheet.  For parameterized symbols, the name
+  must end with the pattern "(s?f?p?x?)", where "s" stands for
+  stroke, "f" for fill, "p" for pen, and "x" for size.
+<dt><span class="tex-bf">transformations</span></dt><dd> (optional) As for objects.
+<dt><span class="tex-bf">xform</span></dt><dd> (optional) If this attribute is set, a PDF XForm will be
+  created for this symbol when saving or exporting to PDF. It implies
+  <code>transformations="translations"</code>, and will be ignored if 
+  any of the symbol parameters (that is, stroke, fill, pen, or size)
+  are used.  Setting this attribute will cause the PDF output to be
+  significantly smaller for a complicated symbol that is used often
+  (for instance, a complicated background used on every page).
+</dl>
+<p>The contents of the <code>&lt;symbol&gt;</code> element is a single Ipe object.
+
+<h3 id="id4">9.4.2 The <span class="tex-tt">&lt;preamble&gt;</span> element</h3>
+<p>See the <span class="tex-tt">&lt;preamble&gt;</span> elements inside <code>&lt;ipe&gt;</code> elements.
+
+<h3 id="id5">9.4.3 The <span class="tex-tt">&lt;textstyle&gt;</span> element</h3>
+
+<h4 id="id6">Attributes</h4>
+<dl class="tex-description"><dt><span class="tex-bf">name</span></dt><dd> (required) The symbolic name (to be used in the <code>style</code>
+  attribute of <code>&lt;text&gt;</code> elements),
+<dt><span class="tex-bf">begin</span></dt><dd> (required) LaTeX code to be placed before the text of
+  the object when it is formatted,
+<dt><span class="tex-bf">end</span></dt><dd> (required) LaTeX code to be placed after the text of
+  the object when it is formatted.
+</dl>
+
+<h3 id="id7">9.4.4 The <span class="tex-tt">&lt;layout&gt;</span> element</h3>
+<p>It defines the layout of the frame on the paper and the paper size. 
+
+<h4 id="id8">Attributes</h4>
+<dl class="tex-description"><dt><span class="tex-bf">paper</span></dt><dd> (required) The size of the paper.
+<dt><span class="tex-bf">origin</span></dt><dd> (required) The lower left corner of the frame
+  in the paper coordinate system.
+<dt><span class="tex-bf">frame</span></dt><dd> (required) The size of the frame.
+<dt><span class="tex-bf">skip</span></dt><dd> (optional) The default paragraph skip between textboxes.
+<dt><span class="tex-bf">crop</span></dt><dd> (optional) If the value of <code>crop</code> is <code>yes</code>, Ipe
+  will create a <code>CropBox</code> attribute when saving to PDF.  
+</dl>
+
+<h3 id="id9">9.4.5 The <span class="tex-tt">&lt;titlestyle&gt;</span> element</h3>
+<p>It defines the appearance of the page title on the page.
+
+<h4 id="id10">Attributes</h4>
+<dl class="tex-description"><dt><span class="tex-bf">pos</span></dt><dd> (required) The position of the title reference point in the
+  frame coordinate system.
+<dt><span class="tex-bf">color</span></dt><dd> (required)  The color of the title.
+<dt><span class="tex-bf">size</span></dt><dd> (required) The title font size (same as for <code>&lt;text&gt;</code>
+  elements). 
+<dt><span class="tex-bf">halign</span></dt><dd> (optional) The horizontal alignment (same as for <code>&lt;text&gt;</code>
+  elements). 
+<dt><span class="tex-bf">valign</span></dt><dd> (optional) The vertical alignment (same as for <code>&lt;text&gt;</code>
+  elements). 
+</dl>
+
+<h3 id="id11">9.4.6 The <span class="tex-tt">&lt;pagenumberstyle&gt;</span> element</h3>
+<p>It defines the appearance of page numbers on the page.  The contents
+of the element is a <a href="manual_29.html#pagenumberstyle">template for a text object</a>.  
+
+<h4 id="id12">Attributes</h4>
+<dl class="tex-description"><dt><span class="tex-bf">pos</span></dt><dd> (required) The position of the page number on the page.
+<dt><span class="tex-bf">color</span></dt><dd> (optional)  The color of the page number.  The default is black.
+<dt><span class="tex-bf">size</span></dt><dd> (optional) The font size (same as for <code>&lt;text&gt;</code>
+  elements).  The default is <span class="tex-tt">normal</span>.
+<dt><span class="tex-bf">halign</span></dt><dd> (optional) The horizontal alignment (same as for <code>&lt;text&gt;</code>
+  elements). 
+<dt><span class="tex-bf">valign</span></dt><dd> (optional) The vertical alignment (same as for <code>&lt;text&gt;</code>
+  elements). 
+</dl>
+
+<h3 id="id13">9.4.7 The <span class="tex-tt">&lt;textpad&gt;</span> element</h3>
+<p>It defines padding around text objects for the computation of bounding
+boxes.  The four required attributes are <span class="tex-tt">left</span>,
+<span class="tex-tt">right</span>, <span class="tex-tt">top</span>, and  <span class="tex-tt">bottom</span>.
+
+<h3 id="id14">9.4.8 The <span class="tex-tt">&lt;pathstyle&gt;</span> element</h3>
+<p>It defines the default setting for path objects.
+
+<h4 id="id15">Attributes</h4>
+<dl class="tex-description"><dt><span class="tex-bf">cap</span></dt><dd> (optional) Same as for <code>&lt;path&gt;</code> elements.
+<dt><span class="tex-bf">join</span></dt><dd> (optional) Same as for <code>&lt;path&gt;</code> elements.
+<dt><span class="tex-bf">fillrule</span></dt><dd> (optional) Same as for <code>&lt;path&gt;</code> elements.
+</dl>
+
+<h3 id="id16">9.4.9 The <span class="tex-tt">&lt;opacity&gt;</span> element</h3>
+<p>The <code>opacity</code> element defines a possible opacity value (also
+known as an alpha-value).  All opacity values used in a document must
+be defined in the style sheet.
+
+<h4 id="id17">Attributes</h4>
+<dl class="tex-description"><dt><span class="tex-bf">name</span></dt><dd> (required) A symbolic name, to be used in the
+  <code>opacity</code> attribute of a <code>text</code> or <code>path</code> element. 
+<dt><span class="tex-bf">value</span></dt><dd> (required) An absolute value for the opacity, between
+  0.001 and&nbsp;1.000. A value of&nbsp;1.0 implies that the element is fully
+  opaque.
+</dl>
+
+<h3 id="id18">9.4.10 The <span class="tex-tt">&lt;gradient&gt;</span> element</h3>
+
+<p>The <code>gradient</code> element defines a gradient pattern.
+
+<h4 id="id19">Attributes of <code>&lt;gradient&gt;</code></h4>
+<dl class="tex-description"><dt><span class="tex-bf">name</span></dt><dd> (required) The symbolic name (to be used in the
+  <code>gradient</code> attribute of <code>&lt;path&gt;</code> elements).
+<dt><span class="tex-bf">type</span></dt><dd> (required) Possible values are
+<code>axial</code> and <code>radial</code>.
+<dt><span class="tex-bf">extend</span></dt><dd> (optional) <code>yes</code> or <code>no</code> (the default).
+  Indicates whether the gradient is extended beyond the boundaries.
+<dt><span class="tex-bf">coords</span></dt><dd> (required) For axial shading: the coordinates of the
+  endpoints of the axis (in the order <code>x1 y1 x2 y2</code>). For radial
+  shading: the center and radius of both circles (in the order
+  <code>cx1 cy1 r1 cx2 cy2 r2</code>).
+<dt><span class="tex-bf">matrix</span></dt><dd> (optional) A transformation that transforms the gradient
+  coordinate system into the coordinate system of the path object
+  using the gradient. The default is the identity matrix.
+</dl>
+<p>The contents of the <code>&lt;gradient&gt;</code> element are <code>&lt;stop&gt;</code>
+elements defining the color stops of the gradient.  There must be at
+least two stops.  Stops must be defined in increasing offset order.
+It is not necessary that the first offset is&nbsp;0.0 and the last one
+is&nbsp;1.0.
+
+<h4 id="id20">Attributes of <code>&lt;stop&gt;</code></h4>
+<dl class="tex-description"><dt><span class="tex-bf">offset</span></dt><dd> (required) Offset of the color stop (a number between
+  0.0 and 1.0).
+<dt><span class="tex-bf">color</span></dt><dd> (required) Color at this color stop (three
+  numbers). Symbolic names are not allowed.
+</dl>
+
+<h3 id="id21">9.4.11 The <span class="tex-tt">&lt;tiling&gt;</span> element</h3>
+<p>The <code>tiling</code> element defines a tiling pattern.  Only very simple
+patterns that hatch the area with a line are supported.
+
+<h4 id="id22">Attributes</h4>
+<dl class="tex-description"><dt><span class="tex-bf">name</span></dt><dd> (required) The symbolic name (to be used in the <code>tiling</code>
+  attribute of <code>&lt;path&gt;</code> elements).
+<dt><span class="tex-bf">angle</span></dt><dd> (required) Slope of the hatching line in degrees, between
+  -90 and +90 degrees.
+<dt><span class="tex-bf">width</span></dt><dd> (required) Width of the hatching line.
+<dt><span class="tex-bf">step</span></dt><dd> (required) Distance from one hatching line to the next.
+</dl>
+<p>Here, <code>width</code> and <code>step</code> are measured in the <i>y</i>-direction
+if the absolute value of <code>angle</code> is less than 45&nbsp;degrees, and in
+the <i>y</i>-direction otherwise.
+
+<h3 id="id23">9.4.12 The <span class="tex-tt">&lt;effect&gt;</span> element</h3>
+<p>The <code>effect</code> element defines a graphic effect to be used during a
+PDF page transition.  Acrobat Reader supports these effects, but not
+all PDF viewers do.
+
+<h4 id="id24">Attributes</h4>
+<dl class="tex-description"><dt><span class="tex-bf">name</span></dt><dd> (required) The symbolic name (to be used in the <code>effect</code>
+  attribute of <code>&lt;view&gt;</code> elements).
+<dt><span class="tex-bf">duration</span></dt><dd> (optional) Value must be a real number, indicating the
+  duration of display in seconds.
+<dt><span class="tex-bf">transition</span></dt><dd> (optional) Value must be a real number, indicating the
+  duration of the transition effect in seconds.
+<dt><span class="tex-bf">effect</span></dt><dd> (optional) a number indicated the desired effect.  The
+  value must be an integer between&nbsp;0 and&nbsp;16 (see
+  <code>ipe::Effect::TEffect</code> for the exact meaning).
+</dl>
+
+<h3 id="id25">9.4.13 Other style definition elements</h3>
+<p>The remaining style definition elements are:
+<ul class="tex-itemize"><li><code>&lt;color&gt;</code> Defines a symbolic color.  The value must be an
+  absolute color, that is either a single gray value (between 0 and
+  1), or three components (red, green, blue) separated by space.
+<li><code>&lt;dashstyle&gt;</code> Defines a symbolic dashstyle. The value must
+  be a correct dashstyle description, e.g. <code>[3 5 2 5] 0</code>.
+<li><code>&lt;pen&gt;</code> Defines a symbolic pen width. The value is a single
+  real number.
+<li><code>&lt;textsize&gt;</code> Defines a symbolic text size.  The value is a
+  piece of LaTeX source code selecting the desired font size.
+<li><code>&lt;textstretch&gt;</code> Defines a symbolic text stretch factor. The
+  symbolic name is shared with <code>&lt;textsize&gt;</code> elements. The value
+  is a single real number.
+<li><code>&lt;symbolsize&gt;</code> Defines a symbolic size for symbols. The value
+  is a single real number, and indicates the scaling factor used for
+  the symbol.
+<li><code>&lt;arrowsize&gt;</code> Defines a symbolic size for arrows. The value
+  is a single real number.
+<li><code>&lt;gridsize&gt;</code> Defines a grid size.  The symbolic name cannot
+  actually be used by objects in the document &mdash; it is only used to
+  fill the grid size selector in the user interface.
+<li><code>&lt;anglesize&gt;</code> Defines an angular snap angle.  The symbolic
+  name cannot actually be used by objects in the document &mdash; it is
+  only used to fill the angle selector in the user interface.
+</ul>
+
+<h4 id="id26">Common attributes</h4>
+<dl class="tex-description"><dt><span class="tex-bf">name</span></dt><dd> (required) A symbolic name, which must start with a
+  letter 'a' to 'z' or 'A' to 'Z'.
+<dt><span class="tex-bf">value</span></dt><dd> (required) A legal absolute value for the type of
+  attribute.
+</dl>
+</div>
+</div></body></html>

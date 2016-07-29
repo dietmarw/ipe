@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<!-- XML file produced from file: manual.tex
+     using Hyperlatex v 15.02 (c) Otfried Cheong
+     on Emacs 24.3.1, Tue Jul 19 19:54:59 2016 -->
+<head>
+<title>Ipe Manual -- 7.1 Presentation stylesheets</title>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width,
+    initial-scale=1" /><link rel="stylesheet" href="manual.css" />
+<style type="text/css">
+.tex-maketitle { text-align: center; }
+div.tex-abstract { margin-left: 20%; margin-right: 10%; }
+h3.tex-abstract  { text-align: center; }
+div.tex-verse, div.tex-quote, div.tex-quotation, div.tex-math {
+  margin-left : 10%; 
+  margin-right : 10%;
+}
+.tex-normalsize { font-size: medium; }
+.tex-large { font-size: large; }
+.tex-Large { font-size: x-large; }
+.tex-LARGE { font-size: xx-large; }
+.tex-huge { font-size: xx-large; }
+.tex-Huge { font-size: xx-large; }
+.tex-small { font-size: small; }
+.tex-footnotesize { font-size: x-small; }
+.tex-scriptsize { font-size: x-small; }
+.tex-tiny { font-size: xx-small; }
+.tex-emph { font-style: italic; }
+.tex-strong { font-weight: bold; }
+.tex-bf { font-weight: bold; }
+.tex-it { font-style: italic; }
+.tex-tt { font-family: monospace; }
+.tex-underline { text-decoration: underline; }
+.tex-sf { font: sans-serif; }
+.tex-sc { font-variant: small-caps; }
+.tex-center { text-align: center; }
+.tex-mbox { white-space: nowrap; }
+.tex-verbatim, .tex-example {
+  border-radius: 16px;
+  box-shadow: #387BBE 0px 0px 12px 0px;
+  padding: 1em 1em;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+dl.tex-description {
+  padding-left: 2em;
+  padding-right: 2em;
+}
+dl.tex-description dt {
+  float: left;
+  clear: left;
+  color: green;
+  width: 200px;
+}
+dl.tex-description dd {
+  margin-left: 200px;
+  margin-right: 100px;
+}
+</style>
+
+</head>
+<body bgcolor="#ffffe6">
+<div data-role="page">
+<table width="100%" cellpadding=0 cellspacing=2><tr>
+    <td bgcolor="#99ccff"><a href="manual_30.html"><img border="0" alt="7.2 Views" src="next.png"></a></td><td bgcolor="#99ccff"><a href="manual_28.html"><img border="0" alt="7 Presentations" src="up.png"></a></td><td bgcolor="#99ccff"><img alt="" src="blank.png"></td><td align="center" bgcolor="#99ccff" width="100%"><span class="tex-bf">7.1 Presentation stylesheets</span></td></tr></table>
+<div data-role="content">
+<h2>7.1 Presentation stylesheets</h2>
+<p>A presentation <span class="tex-emph">must</span> use a dedicated stylesheet.  Presentations
+must use much larger fonts than what is normal for a figure.  Don't
+try to make use of the "LARGE" and "huge" textsizes, but use a
+stylesheet that properly defines "normal" to be a large textsize.
+<p>Ipe comes with a style sheet <span class="tex-emph">presentation.isy</span> that can be used for
+presentations.   To create a new presentation, you can simply say:
+<pre class="tex-verbatim"> 
+  ipe -sheet presentation
+</pre>
+Note that <span class="tex-emph">presentation.isy</span> is meant to be used <span class="tex-emph">instead</span>
+of <span class="tex-emph">basic.isy</span> (not in addition to it).
+<p>This presentation stylesheet enlarges all standard sizes by a
+factor&nbsp;<i>2.8</i>.  Note the use of the <code>&lt;textstretch&gt;</code> element to
+magnify text:
+<pre class="tex-verbatim">
+&lt;textstretch name="normal" value="2.8"/&gt;
+&lt;textstretch name="large" value="2.8"/&gt;
+</pre>
+The text size you choose from the Ipe user interface
+(<span class="tex-emph">"large"</span>, for instance) is in fact used for <span class="tex-emph">two</span>
+symbolic attributes, namely <code>textsize</code> (where <span class="tex-emph">large</span> maps
+to <code>\large</code>) and <code>textstretch</code> (where it maps to no stretch
+in the standard style sheet).  By setting the text stretch, you can
+magnify fonts.
+<p>In addition, the <code>&lt;layout&gt;</code> element in this stylesheet redefines
+the paper size to be of the correct proportions for a projector, and
+defines a smaller area of the paper as the <span class="tex-emph">frame</span>.  The frame is
+the area that should be used for the contents. The <span class="tex-emph">Insert text
+  box</span> function, for instance, creates text objects that fill exactly
+the width of the frame.
+<p>The <code>&lt;titlestyle&gt;</code> element defines the style of the page
+<span class="tex-emph">title</span> outside the frame.  You can set the title for each page
+using the <span class="tex-emph">Edit title &#38; sections</span> function in the <span class="tex-emph">Page</span>
+menu.
+<p>The LaTeX-preamble defined in the <code>&lt;preamble&gt;</code> element
+redefines the standard font shape to <code>cmss</code> (Computer Modern Sans
+Serif).  Many people find sans-serif fonts easier to read on a screen.
+In addition, it redefines the list environments to use less spacing,
+and the text styles to not justify paragraphs (the <code>&lt;textstyle&gt;</code>
+elements). 
+<p>If you wish to use the page transition effects of Acrobat Reader, you
+can define the effects in the stylesheet (using <code>&lt;effect&gt;</code>
+elements), and set them using <span class="tex-emph">Edit effect</span> in the <span class="tex-emph">View</span>
+menu.
+<p><span id="pagenumberstyle">
+If</span> you want to number the pages of the presentation, you'll need to
+use the <code>&lt;pagenumberstyle&gt;</code> element.  It defines color, size,
+position, and alignment of the page number, and provides a template
+for the page number text.  The template can use the following Latex
+counters:
+<ul class="tex-itemize"><li><code>ipePage</code> for the current page number,
+  <li><code>ipeView</code> for the current view number,
+  <li><code>ipePages</code> for the total number of pages,
+  <li><code>ipeViews</code> for the number of views of the current page,
+</ul>
+and the special macro <code>\ipeNumber{x}{y}</code> that evaluates to <code>x</code> when
+the page has only one view, and to <code>y</code> if there is more than one
+view.
+<p>If the template is empty, this has the same effect as the following
+definition (this is also the default definition):
+<pre class="tex-verbatim">
+\ipeNumber{\arabic{ipePage}}{\arabic{ipePage} - \arabic{ipeView}}
+</pre>
+<p>The following example definition indicates the views of a single page
+with letters A, B, C, &hellip;:
+<pre class="tex-verbatim">
+&lt;pagenumberstyle pos="300 100" size="Huge" color="navy" 
+  halign="center"&gt;\ipeNumber{\arabic{ipePage}}{\arabic{ipePage} 
+\Alph{ipeView}}&lt;/pagenumberstyle&gt;
+</pre>
+<p>The following definition uses roman numerals for the pages and does
+not indicate different views at all:
+<pre class="tex-verbatim">
+&lt;pagenumberstyle pos="580 20" size="Huge" color="purple" 
+  halign="right"&gt;\roman{ipePage}&lt;/pagenumberstyle&gt;
+</pre>
+<p>And this shows both the current page and the total number of pages:
+<pre class="tex-verbatim">
+&lt;pagenumberstyle pos="20 820" size="Huge" color="0.5 0 0" 
+  valign="top"&gt;\arabic{ipePage}/\arabic{ipePages}&lt;/pagenumberstyle&gt;
+</pre>
+</div>
+</div></body></html>

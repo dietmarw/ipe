@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<!-- XML file produced from file: manual.tex
+     using Hyperlatex v 15.02 (c) Otfried Cheong
+     on Emacs 24.3.1, Tue Jul 19 19:54:59 2016 -->
+<head>
+<title>Ipe Manual -- 4.2 Text objects</title>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width,
+    initial-scale=1" /><link rel="stylesheet" href="manual.css" />
+<style type="text/css">
+.tex-maketitle { text-align: center; }
+div.tex-abstract { margin-left: 20%; margin-right: 10%; }
+h3.tex-abstract  { text-align: center; }
+div.tex-verse, div.tex-quote, div.tex-quotation, div.tex-math {
+  margin-left : 10%; 
+  margin-right : 10%;
+}
+.tex-normalsize { font-size: medium; }
+.tex-large { font-size: large; }
+.tex-Large { font-size: x-large; }
+.tex-LARGE { font-size: xx-large; }
+.tex-huge { font-size: xx-large; }
+.tex-Huge { font-size: xx-large; }
+.tex-small { font-size: small; }
+.tex-footnotesize { font-size: x-small; }
+.tex-scriptsize { font-size: x-small; }
+.tex-tiny { font-size: xx-small; }
+.tex-emph { font-style: italic; }
+.tex-strong { font-weight: bold; }
+.tex-bf { font-weight: bold; }
+.tex-it { font-style: italic; }
+.tex-tt { font-family: monospace; }
+.tex-underline { text-decoration: underline; }
+.tex-sf { font: sans-serif; }
+.tex-sc { font-variant: small-caps; }
+.tex-center { text-align: center; }
+.tex-mbox { white-space: nowrap; }
+.tex-verbatim, .tex-example {
+  border-radius: 16px;
+  box-shadow: #387BBE 0px 0px 12px 0px;
+  padding: 1em 1em;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+dl.tex-description {
+  padding-left: 2em;
+  padding-right: 2em;
+}
+dl.tex-description dt {
+  float: left;
+  clear: left;
+  color: green;
+  width: 200px;
+}
+dl.tex-description dd {
+  margin-left: 200px;
+  margin-right: 100px;
+}
+</style>
+
+</head>
+<body bgcolor="#ffffe6">
+<div data-role="page">
+<table width="100%" cellpadding=0 cellspacing=2><tr>
+    <td bgcolor="#99ccff"><a href="manual_18.html"><img border="0" alt="4.3 Image objects" src="next.png"></a></td><td bgcolor="#99ccff"><a href="manual_15.html"><img border="0" alt="4 Object types" src="up.png"></a></td><td bgcolor="#99ccff"><a href="manual_16.html"><img border="0" alt="4.1 Path objects" src="previous.png"></a></td><td align="center" bgcolor="#99ccff" width="100%"><span class="tex-bf">4.2 Text objects</span></td></tr></table>
+<div data-role="content">
+<h2>4.2 Text objects</h2>
+
+<p>
+
+
+ 
+Text objects come in two flavors: simple <span class="tex-emph">labels</span>, and
+<span class="tex-emph">minipages</span>.  There are two variants of these: <span class="tex-emph">titles</span> (a
+label that serves as the title of the page), and <span class="tex-emph">textbox</span> (a
+minipage that spans the entire width of the page).
+<p>The position you have to click to start creating a <span class="tex-emph">label</span> object
+is normally the leftmost baseline point (but this can be changed by
+changing the object's horizontal and vertical alignment).  A popup
+window appears where you can enter Latex source code.
+<p>A <span class="tex-emph">minipage</span> object is different from a simple text object in
+that its width is part of its definition. When you create a minipage
+object, you first have to drag out a horizontal segment for the
+minipage.  This is used as the top edge of the minipage&mdash;it will
+extend downwards as far as necessary to accomodate all the text.
+Minipages are formatted using, not surprisingly, Latex's
+<code>minipage</code> environment.  Latex tries to fill the given bounding
+box as nicely as possible. It is possible to include center
+environments, lemmas, and much more in minipages.
+<p>To create a <span class="tex-emph">textbox</span> object, simply press <font color="#0000ff">F10</font>.  Ipe
+automatically places the object so that it spans the entire width of
+the page (the <span class="tex-emph">layout</span> settings in the stylesheet determine how
+much space is left on the sides), and places it vertically underneath
+the textboxes already on the page.  This is particularly convenient
+for creating presentations with a lot of text, or with items that
+appear <a href="manual_30.html">one by one</a>.
+<p><span class="tex-emph">Title</span> objects are managed by Ipe automatically.  They are
+special labels that are created using <span class="tex-emph">Edit title &#38; sections</span> in
+the <span class="tex-emph">Page</span> menu.  Their color, size, alignment, and position on
+the page is determined by the stylesheet.
+<p>You can use any LaTeX-command that is legal inside a
+<code>\makebox</code> (for labels) or inside a <code>minipage</code> (for
+minipages).  You cannot use commands that involve a non-linear
+translation into PDF, such as commands to generate hyperlinks or to
+include external images.
+<p>You can use color in your text objects, using the <code>\textcolor</code>
+command, like this:
+<pre class="tex-verbatim">
+This is in black. \textcolor{red}{This is in red.} This is in black.
+</pre>
+All the symbolic colors of your current stylesheet are also available
+as arguments to <code>\textcolor</code>.  You can also use absolute colors,
+for instance:
+<pre class="tex-verbatim">
+This is in black. \textcolor[rgb]{1,1,0}{This is in yellow.} This is in black.
+</pre>
+<p><span id="id1">
+
+If</span> you need LaTeX-commands that are defined in additional LaTeX
+packages, you can include (<code>\usepackage</code>) those in the LaTeX
+preamble, which can be set in <span class="tex-emph">Document properties</span> in the
+<span class="tex-emph">Edit</span> menu.
+<p>After you have created or edited a text object, the Ipe screen display
+will show the beginning of the Latex source.  You can select <span class="tex-emph">Run
+  Latex</span> from the <span class="tex-emph">File</span> menu to create the PDF/Postscript
+representation of the object.  This converts all the text objects in
+your document at once, and Ipe will display a correct rendition of the
+text afterwards.
+<p>If the Latex conversion process results in errors, Ipe will
+automatically show you the log file created by the Latex run.  If you
+cannot figure out the problem, look in <a href="manual_37.html">the section on
+  troubleshooting</a>.
+<p>You can use Unicode text, such as accented characters, Greek,
+Cyrillic, Chinese, Japanese, or Korean, in your text objects, once
+<a href="manual_38.html">you have set up the necessary style files and
+  fonts</a>.
+<p>When Ipe computes the bounding box for a piece of text, it relies
+entirely on the dimensions that Latex provides.  Sometimes glyphs are
+larger than their "official" dimensions, and as a result this
+bounding box is too tight.  In the following figure, "A" and "G"
+stick out of the golden rectangle (the bounding box computed by Ipe
+based on the Latex dimensions) at the top, "y" sticks out at the
+bottom:
+<div class="tex-center"><p>
+  <object type="image/svg+xml" data="fontbbox.svg"
+      name="fontbbox"></object>
+</p></div>
+When you experience that text in your figures is clipped, you may have
+to enlarge the figure's bounding box using a "BBOX" layer.
+<p>The opposite problem can occur when you use transformed text.  Ipe
+computes the bounding box for the transformed text by transforming the
+bounding box for the original text, and the result can be too large:
+<div class="tex-center"><p>
+  <object type="image/svg+xml" data="fontbbox2.svg"
+      name="fontbbox2"></object>
+</p></div>
+If this is a problem, you can put the text object inside a group and
+set a clipping path for the group.
+</div>
+</div></body></html>

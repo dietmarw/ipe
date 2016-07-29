@@ -1,0 +1,25 @@
+body, table, div, p {
+    font-family: Georgia, serif;
+}
+
+h1 {
+    font-family: Lucida Grande, Verdana, Geneva, Arial, sans-serif;
+    color: #153788;
+    text-align: left;
+}
+
+h2 {
+    font-family: Lucida Grande, Verdana, Geneva, Arial, sans-serif;
+    color: #153788;
+    text-align: left;
+}
+
+h3 {
+    font-family: Lucida Grande, Verdana, Geneva, Arial, sans-serif;
+    color: #153788;
+    text-align: left;
+}
+
+em {
+    color: #FF9900;
+}

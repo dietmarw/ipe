@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<!-- XML file produced from file: manual.tex
+     using Hyperlatex v 15.02 (c) Otfried Cheong
+     on Emacs 24.3.1, Tue Jul 19 19:54:59 2016 -->
+<head>
+<title>Ipe Manual -- 8.4 Unicode text</title>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width,
+    initial-scale=1" /><link rel="stylesheet" href="manual.css" />
+<style type="text/css">
+.tex-maketitle { text-align: center; }
+div.tex-abstract { margin-left: 20%; margin-right: 10%; }
+h3.tex-abstract  { text-align: center; }
+div.tex-verse, div.tex-quote, div.tex-quotation, div.tex-math {
+  margin-left : 10%; 
+  margin-right : 10%;
+}
+.tex-normalsize { font-size: medium; }
+.tex-large { font-size: large; }
+.tex-Large { font-size: x-large; }
+.tex-LARGE { font-size: xx-large; }
+.tex-huge { font-size: xx-large; }
+.tex-Huge { font-size: xx-large; }
+.tex-small { font-size: small; }
+.tex-footnotesize { font-size: x-small; }
+.tex-scriptsize { font-size: x-small; }
+.tex-tiny { font-size: xx-small; }
+.tex-emph { font-style: italic; }
+.tex-strong { font-weight: bold; }
+.tex-bf { font-weight: bold; }
+.tex-it { font-style: italic; }
+.tex-tt { font-family: monospace; }
+.tex-underline { text-decoration: underline; }
+.tex-sf { font: sans-serif; }
+.tex-sc { font-variant: small-caps; }
+.tex-center { text-align: center; }
+.tex-mbox { white-space: nowrap; }
+.tex-verbatim, .tex-example {
+  border-radius: 16px;
+  box-shadow: #387BBE 0px 0px 12px 0px;
+  padding: 1em 1em;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+dl.tex-description {
+  padding-left: 2em;
+  padding-right: 2em;
+}
+dl.tex-description dt {
+  float: left;
+  clear: left;
+  color: green;
+  width: 200px;
+}
+dl.tex-description dd {
+  margin-left: 200px;
+  margin-right: 100px;
+}
+</style>
+
+</head>
+<body bgcolor="#ffffe6">
+<div data-role="page">
+<table width="100%" cellpadding=0 cellspacing=2><tr>
+    <td bgcolor="#99ccff"><a href="manual_39.html"><img border="0" alt="8.5 Customizing Ipe" src="next.png"></a></td><td bgcolor="#99ccff"><a href="manual_34.html"><img border="0" alt="8 Advanced topics" src="up.png"></a></td><td bgcolor="#99ccff"><a href="manual_37.html"><img border="0" alt="8.3 Troubleshooting the LaTeX-conversion" src="previous.png"></a></td><td align="center" bgcolor="#99ccff" width="100%"><span class="tex-bf">8.4 Unicode text</span></td></tr></table>
+<div data-role="content">
+<h2>8.4 Unicode text</h2>
+
+<p>
+
+
+
+<p>If you make figures containing text objects in languages other than
+English, you will need to enter accented characters, or characters
+from other scripts such as Greek, Hangul, Kana, or Chinese characters.
+Of course you can still use the LaTeX syntax <code>K\"onig</code> to
+enter the German word "K&ouml;nig", but for larger runs of text it's
+more convenient to enter text in a script supported by your system.
+When Ipe writes the Pdflatex source file, it writes the text in UTF-8
+encoded Unicode.  You only have to make sure that Pdflatex can handle
+this file. 
+<p>Instead of the solution below you may want to use Xetex for the
+LaTeX-conversion. It supports Unicode natively.
+<p>An easy solution, sufficient for German, French, and other languages
+for which support is already in a standard LaTeX-setup, is to add
+the line
+<pre class="tex-verbatim">
+\usepackage[utf8]{inputenc}
+</pre>
+in your <span class="tex-emph">Latex preamble</span> (set in the <span class="tex-emph">Document properties</span>
+dialog, available on the <span class="tex-emph">Edit</span> menu).  
+<p>When setting this up, you have to keep in mind that Ipe can only
+handle scalable fonts, such as Postscript Type1 fonts.  You'll have to
+choose a setup that uses such scalable fonts.
+<p>For instance, to use UTF-8 encoded Russian in LaTeX, it is
+sufficient to put this in the preamble:
+<pre class="tex-verbatim">
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+</pre>
+However, this will <span class="tex-emph">not</span> work with Ipe:  This setup uses Metafont
+fonts, which are included in the PDF output as bitmaps, and Ipe cannot
+use these fonts.  In this case the solution is to install the
+<span class="tex-emph">PsCyr</span> package, and the following preamble:
+<pre class="tex-verbatim">
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{pscyr}
+</pre>
+</div>
+</div></body></html>

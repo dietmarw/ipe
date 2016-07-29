@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<!-- XML file produced from file: manual.tex
+     using Hyperlatex v 15.02 (c) Otfried Cheong
+     on Emacs 24.3.1, Tue Jul 19 19:54:59 2016 -->
+<head>
+<title>Ipe Manual -- 5.3 Angular snapping</title>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width,
+    initial-scale=1" /><link rel="stylesheet" href="manual.css" />
+<style type="text/css">
+.tex-maketitle { text-align: center; }
+div.tex-abstract { margin-left: 20%; margin-right: 10%; }
+h3.tex-abstract  { text-align: center; }
+div.tex-verse, div.tex-quote, div.tex-quotation, div.tex-math {
+  margin-left : 10%; 
+  margin-right : 10%;
+}
+.tex-normalsize { font-size: medium; }
+.tex-large { font-size: large; }
+.tex-Large { font-size: x-large; }
+.tex-LARGE { font-size: xx-large; }
+.tex-huge { font-size: xx-large; }
+.tex-Huge { font-size: xx-large; }
+.tex-small { font-size: small; }
+.tex-footnotesize { font-size: x-small; }
+.tex-scriptsize { font-size: x-small; }
+.tex-tiny { font-size: xx-small; }
+.tex-emph { font-style: italic; }
+.tex-strong { font-weight: bold; }
+.tex-bf { font-weight: bold; }
+.tex-it { font-style: italic; }
+.tex-tt { font-family: monospace; }
+.tex-underline { text-decoration: underline; }
+.tex-sf { font: sans-serif; }
+.tex-sc { font-variant: small-caps; }
+.tex-center { text-align: center; }
+.tex-mbox { white-space: nowrap; }
+.tex-verbatim, .tex-example {
+  border-radius: 16px;
+  box-shadow: #387BBE 0px 0px 12px 0px;
+  padding: 1em 1em;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+dl.tex-description {
+  padding-left: 2em;
+  padding-right: 2em;
+}
+dl.tex-description dt {
+  float: left;
+  clear: left;
+  color: green;
+  width: 200px;
+}
+dl.tex-description dd {
+  margin-left: 200px;
+  margin-right: 100px;
+}
+</style>
+
+</head>
+<body bgcolor="#ffffe6">
+<div data-role="page">
+<table width="100%" cellpadding=0 cellspacing=2><tr>
+    <td bgcolor="#99ccff"><a href="manual_25.html"><img border="0" alt="5.4 Interaction of the snapping modes" src="next.png"></a></td><td bgcolor="#99ccff"><a href="manual_21.html"><img border="0" alt="5 Snapping" src="up.png"></a></td><td bgcolor="#99ccff"><a href="manual_23.html"><img border="0" alt="5.2 Context snapping" src="previous.png"></a></td><td align="center" bgcolor="#99ccff" width="100%"><span class="tex-bf">5.3 Angular snapping</span></td></tr></table>
+<div data-role="content">
+<h2>5.3 Angular snapping</h2>
+
+
+
+
+
+
+When <span class="tex-emph">angular snapping</span> is enabled, the mouse position is
+restricted to lie on a set of lines through the <span class="tex-emph">origin</span> of your
+current <span class="tex-emph">axis system</span>. The lines are the lines whose angle with
+the <span class="tex-emph">base direction</span> is an integer multiple of the snap
+angle. The snap angle can be set in the second box in the Snap
+toolbar. The values are indicated in degrees.
+<p>For a snap angle of 180&nbsp;degrees, snapping is to a single line through
+the current origin.
+<p><span id="id1"> 
+In</span> order to use angular snapping, it is important to set the axis
+system correctly. To set the origin, move the mouse to the correct
+position, and press the <kbd>F1</kbd>-key. Note that angular snapping is
+<span class="tex-emph">disabled</span> while setting the origin. This way you can set a new
+origin for angular snapping without leaving the mode first.  Once the
+origin has been set, the base direction is set by moving to a point on
+the desired base line, and pressing the <kbd>F2</kbd>-key. Again, angular
+snapping is disabled.  Together, origin and base direction determine
+the current <span class="tex-emph">axis system</span>. Remember that the origin is also used
+as the fix-point of scale, stretch, and rotate operations, if it is
+set.
+<p>You can hide the current axis system by pressing <kbd>Ctrl+F1</kbd>. This
+also turns off angular snapping, but preserves origin and orientation of
+the axes.  To reset the orientation (such that the <i>x</i>-axis is
+horizontal, use <kbd>Ctrl+F2</kbd>).
+<p>You can set origin and base direction at the same time by pressing
+<kbd>F3</kbd> when the mouse is very near (or snapped to) an edge of a
+polygonal object.  The origin is set to an endpoint of the edge, and
+the base direction is aligned with it. This is useful to make objects
+parallel to a given edge.
+<p><span id="id2">
+For</span> drawing rectilinear or c-oriented polygons, the origin should be
+set to the previous vertex at every step. This can be done by pressing
+<kbd>F1</kbd> every time you click the left mouse button, but that would
+not be very convenient. Therefore, Ipe offers a second angular snap
+mode, called <span class="tex-emph">automatic angular snapping</span>. This mode uses an
+independent origin, which is automatically set every time you add a
+vertex when creating a polygonal object. Note that while the origin is
+independent of the origin set by <kbd>F1</kbd>, the base direction and the
+snap angle used by automatic angular snapping is the same as for
+angular snapping.  Hence, you can align the axis system with some edge
+of your drawing using <kbd>F3</kbd>, and then use automatic angular
+snapping to draw a new object that is parallel or orthogonal to this
+edge.
+<p>This snapping mode has another advantage: It remains silent and
+ineffective until you start creating a polygonal object. So, even with
+automatic angular snapping already turned on, you can still freely
+place the first point of a polygon, and then the remaining vertices
+will be properly aligned to make a <i>c</i>-oriented polygon.
+<p>The automatic angular snapping mode is never active for any
+non-polygonal object.  In particular, to <span class="tex-emph">move</span> an object in a
+prescribed direction, you have to use normal angular snapping.
+<p>A final note: Many things that can be done with angular snapping can
+also be done by drawing auxiliary lines and using context snapping. It
+is mostly a matter of taste and exercise to figure out which mode
+suits you best.
+</div>
+</div></body></html>

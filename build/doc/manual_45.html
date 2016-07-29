@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<!-- XML file produced from file: manual.tex
+     using Hyperlatex v 15.02 (c) Otfried Cheong
+     on Emacs 24.3.1, Tue Jul 19 19:55:00 2016 -->
+<head>
+<title>Ipe Manual -- 9.1 The &lt;ipe&gt; element</title>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width,
+    initial-scale=1" /><link rel="stylesheet" href="manual.css" />
+<style type="text/css">
+.tex-maketitle { text-align: center; }
+div.tex-abstract { margin-left: 20%; margin-right: 10%; }
+h3.tex-abstract  { text-align: center; }
+div.tex-verse, div.tex-quote, div.tex-quotation, div.tex-math {
+  margin-left : 10%; 
+  margin-right : 10%;
+}
+.tex-normalsize { font-size: medium; }
+.tex-large { font-size: large; }
+.tex-Large { font-size: x-large; }
+.tex-LARGE { font-size: xx-large; }
+.tex-huge { font-size: xx-large; }
+.tex-Huge { font-size: xx-large; }
+.tex-small { font-size: small; }
+.tex-footnotesize { font-size: x-small; }
+.tex-scriptsize { font-size: x-small; }
+.tex-tiny { font-size: xx-small; }
+.tex-emph { font-style: italic; }
+.tex-strong { font-weight: bold; }
+.tex-bf { font-weight: bold; }
+.tex-it { font-style: italic; }
+.tex-tt { font-family: monospace; }
+.tex-underline { text-decoration: underline; }
+.tex-sf { font: sans-serif; }
+.tex-sc { font-variant: small-caps; }
+.tex-center { text-align: center; }
+.tex-mbox { white-space: nowrap; }
+.tex-verbatim, .tex-example {
+  border-radius: 16px;
+  box-shadow: #387BBE 0px 0px 12px 0px;
+  padding: 1em 1em;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+dl.tex-description {
+  padding-left: 2em;
+  padding-right: 2em;
+}
+dl.tex-description dt {
+  float: left;
+  clear: left;
+  color: green;
+  width: 200px;
+}
+dl.tex-description dd {
+  margin-left: 200px;
+  margin-right: 100px;
+}
+</style>
+
+</head>
+<body bgcolor="#ffffe6">
+<div data-role="page">
+<table width="100%" cellpadding=0 cellspacing=2><tr>
+    <td bgcolor="#99ccff"><a href="manual_46.html"><img border="0" alt="9.2 The &lt;page&gt; element" src="next.png"></a></td><td bgcolor="#99ccff"><a href="manual_44.html"><img border="0" alt="9 The Ipe file format" src="up.png"></a></td><td bgcolor="#99ccff"><img alt="" src="blank.png"></td><td align="center" bgcolor="#99ccff" width="100%"><span class="tex-bf">9.1 The <span class="tex-tt">&lt;ipe&gt;</span> element</span></td></tr></table>
+<div data-role="content">
+<h2>9.1 The <span class="tex-tt">&lt;ipe&gt;</span> element</h2>
+
+<h4 id="id1">Attributes</h4>
+<dl class="tex-description"><dt><span class="tex-bf">version</span></dt><dd> (required) The value (a number, e.g.&nbsp;70103 for
+  Ipelib&nbsp;7.1.3) indicates the earliest Ipelib version that can
+  interpret the document. Ipe will refuse to load documents that
+  require a version larger than its own, and may refuse to load
+  documents that are too old (and which will have to be converted
+  using a separate program).
+<dt><span class="tex-bf">creator</span></dt><dd> (optional) indicates the program that created the file
+  and is not interpreted by Ipe at all.
+</dl>
+
+<h4 id="id2">Contents</h4>
+<ol class="tex-enumerate"><li>An <code>&lt;info&gt;</code> element (optional),
+<li>a <code>&lt;preamble&gt;</code> element (optional),
+<li>a series of <code>&lt;bitmap&gt;</code> and <code>&lt;ipestyle&gt;</code> elements
+  (optional),
+<li>a series of <code>page</code> elements.
+</ol>
+<p>The <code>&lt;ipestyle&gt;</code> elements form a "cascade", with the
+<span class="tex-emph">last</span> <code>&lt;ipestyle&gt;</code> element becoming the <span class="tex-emph">top-level</span>
+style sheet.  When symbolic names are looked up, the style sheets are
+checked from top to bottom.  Ipe always appends the built-in standard
+style sheet at the bottom of the stack.
+
+<h3 id="id3">9.1.1 The <span class="tex-tt">&lt;info&gt;</span> element</h3>
+
+<h4 id="id4">Attributes</h4>
+<dl class="tex-description"><dt><span class="tex-bf">title</span></dt><dd> (optional) document title,
+<dt><span class="tex-bf">author</span></dt><dd> (optional) document author,
+<dt><span class="tex-bf">subject</span></dt><dd> (optional) document subject,
+<dt><span class="tex-bf">keywords</span></dt><dd> (optional) document keywords,
+<dt><span class="tex-bf">pagemode</span></dt><dd> (optional) the only value understood by Ipe is
+  <code>fullscreen</code>, which causes the document to be opened in full
+  screen mode in PDF readers.
+<dt><span class="tex-bf">created</span></dt><dd> (optional) creation time in PDF format,
+  e.g.&nbsp;"D:20030127204100".
+<dt><span class="tex-bf">modified</span></dt><dd> (optional) modification time in PDF format,
+<dt><span class="tex-bf">numberpages</span></dt><dd> (optional) if the value is <code>yes</code>, then Ipe
+  will save PDF documents with visible page numbers on each page.
+<dt><span class="tex-bf">tex</span></dt><dd> (optional) determines the TeX-engine used to translate
+  your text.  The possible values are <span class="tex-tt">pdftex</span>, <span class="tex-tt">xetex</span>,
+  and <span class="tex-tt">luatex</span>.
+</dl> 
+<p>This element must be empty.
+
+<h3 id="id5">9.1.2 The <span class="tex-tt">&lt;preamble&gt;</span> element</h3>
+<p>The contents of this element is LaTeX source code, to be used as
+the LaTeX preamble when running LaTeX to process the text
+objects in the document. It should <span class="tex-emph">not</span> contain a
+<code>\documentclass</code> command, but can contain <code>\usepackage</code>
+commands and macro definitions.
+
+<h3 id="id6">9.1.3 The <span class="tex-tt">&lt;bitmap&gt;</span> element</h3>
+<p>Each <code>&lt;bitmap&gt;</code> element defines a bitmap to be used by
+<code>&lt;image&gt;</code> objects. 
+
+<h4 id="id7">Attributes</h4>
+<dl class="tex-description"><dt><span class="tex-bf">id</span></dt><dd> (required)
+  the value must be an integer that will define the bitmap throughout
+  the Ipe document,
+<dt><span class="tex-bf">width</span></dt><dd> (required) integer width in pixels,
+<dt><span class="tex-bf">height</span></dt><dd> (required) integer height in pixels,
+<dt><span class="tex-bf">ColorSpace</span></dt><dd> (optional) possible values are "DeviceGray",
+"DeviceRGB" (default value), and "DeviceCMYK",
+<dt><span class="tex-bf">BitsPerComponent</span></dt><dd> (required) value must be <i>8</i>,
+<dt><span class="tex-bf">ColorKey</span></dt><dd> (optional) an RGB color in hexadecimal, indicating the
+  transparent color (only suppored for "DeviceRGB" color space),
+<dt><span class="tex-bf">length</span></dt><dd> (required unless there is no filter) the number of bytes
+of image data,
+<dt><span class="tex-bf">Filter</span></dt><dd> (optional) possible values are "FlateDecode" or
+"DCTDecode" to indicate a compressed image (the latter is used for
+JPEG images).
+<dt><span class="tex-bf">encoding</span></dt><dd> (optional) possible value is "base64" to indicate
+  that the image data is base64-encoded (not in hexadecimal).
+</dl>
+<p>The contents of the <code>&lt;bitmap&gt;</code> element is the image data, either
+base64-encoded or in hexadecimal format.  White space between bytes is
+ignored.  If no filter is specified, pixels are stored row by row,
+with rows padded to a full byte boundary.
+<p>Note that images with color maps are not supported, and such support
+is not planned. (The <span class="tex-emph">Insert image</span> function does allow you to
+insert images with color maps, but they are stored as 24-bit images.
+Since the data is compressed, this does not seriously increase the
+image data size.)
+</div>
+</div></body></html>
